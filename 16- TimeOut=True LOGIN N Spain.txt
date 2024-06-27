@@ -1,0 +1,28 @@
+// ==UserScript==
+// @name         timeOut=True LOGIN N
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match         https://www.blsspainmorocco.net/MAR/account/Login?timeOut=True
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        none
+// ==/UserScript==
+
+
+(function() {
+    'use strict';
+
+
+document.addEventListener(DOMContentLoaded, function()
+    {
+     قم بفحص عنوان URL الحالي
+    var currentURL = window.location.href;
+
+     افحص إذا كان العنوان الحالي يحتوي على نص معين لتحديد موقع معين
+    if (currentURL.includes(httpswww.blsspainmorocco.netMARaccountLogintimeOut=True)) {
+         استخدم window.location.href لتحديد عنوان URL الجديد
+        window.location.href = httpswww.blsspainmorocco.netMARaccountlogin;
+    }
+};
+})();
