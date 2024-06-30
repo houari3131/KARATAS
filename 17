@@ -6,26 +6,26 @@
 
     const scriptMappings = [
 
-        { includes: 'https://www.blsspainmorocco.net/MAR/', urls: ['http://localhost:4000/fetch-script/script1','http://localhost:4000/fetch-script/script7','http://localhost:4000/fetch-script/script13','http://localhost:4000/fetch-script/script18']},
-        { includes: '/login', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
-        { includes: '/Login', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
-        { includes: '/LogIn', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
-        { includes: '/logIn', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
-        { includes: '/MAR/NewCaptcha/LoginCaptcha', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script3','http://localhost:4000/fetch-script/script9'] },
-        { includes: 'MAR/newcaptcha/logincaptcha', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script3','http://localhost:4000/fetch-script/script9'] },
+        { includes: 'https://www.blsspainmorocco.net/MAR/', urls: ['http://localhost:4000/fetch-script/1','http://localhost:4000/fetch-script/7','http://localhost:4000/fetch-script/13','http://localhost:4000/fetch-script/18']},
+        { includes: '/login', urls: ['http://localhost:4000/fetch-script/2'] },
+        { includes: '/Login', urls: ['http://localhost:4000/fetch-script/2'] },
+        { includes: '/LogIn', urls: ['http://localhost:4000/fetch-script/2'] },
+        { includes: '/logIn', urls: ['http://localhost:4000/fetch-script/2'] },
+        { includes: '/MAR/NewCaptcha/LoginCaptcha', urls: ['http://localhost:4000/fetch-script/2','http://localhost:4000/fetch-script/3','http://localhost:4000/fetch-script/9'] },
+        { includes: 'MAR/newcaptcha/logincaptcha', urls: ['http://localhost:4000/fetch-script/2','http://localhost:4000/fetch-script/3','http://localhost:4000/fetch-script/9'] },
 
-        { includes: '/MAR/bls/vtv', urls: ['http://localhost:4000/fetch-script/script4','http://localhost:4000/fetch-script/script9'] },
-        { includes: '/MAR/Bls/vtv', urls: ['http://localhost:4000/fetch-script/script4','http://localhost:4000/fetch-script/script9'] },
+        { includes: '/MAR/bls/vtv', urls: ['http://localhost:4000/fetch-script/4','http://localhost:4000/fetch-script/9'] },
+        { includes: '/MAR/Bls/vtv', urls: ['http://localhost:4000/fetch-script/4','http://localhost:4000/fetch-script/9'] },
 
-       { includes: '/MAR/NewCaptcha/GenerateCaptcha', urls: ['http://localhost:4000/fetch-script/script5'] },
+       { includes: '/MAR/NewCaptcha/GenerateCaptcha', urls: ['http://localhost:4000/fetch-script/5'] },
 
-        { includes: '/MAR/bls/vt', urls: ['http://localhost:4000/fetch-script/script6','http://localhost:4000/fetch-script/script9',,'http://localhost:4000/fetch-script/script19'] },
-        { includes: '/MAR/Bls/vt', urls: ['http://localhost:4000/fetch-script/script6','http://localhost:4000/fetch-script/script9','http://localhost:4000/fetch-script/script19'] },
-        { includes: '/MAR/blsappointment/manageappointment', urls: ['http://localhost:4000/fetch-script/script10','http://localhost:4000/fetch-script/script11','http://localhost:4000/fetch-script/script12','http://localhost:4000/fetch-script/script14']},
-        { includes: '/home/index', urls: ['http://localhost:4000/fetch-script/script15'] },
-        { includes: '?timeOut=True', urls: ['http://localhost:4000/fetch-script/script16'] },
-       { includes: 'liveness', urls: ['http://localhost:4000/fetch-script/script20'] },
-        { includes: 'RegisterUser', urls: ['http://localhost:4000/fetch-script/script21'] },
+        { includes: '/MAR/bls/vt', urls: ['http://localhost:4000/fetch-script/6','http://localhost:4000/fetch-script/9',,'http://localhost:4000/fetch-script/19'] },
+        { includes: '/MAR/Bls/vt', urls: ['http://localhost:4000/fetch-script/6','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19'] },
+        { includes: '/MAR/blsappointment/manageappointment', urls: ['http://localhost:4000/fetch-script/10','http://localhost:4000/fetch-script/11','http://localhost:4000/fetch-script/12','http://localhost:4000/fetch-script/14']},
+        { includes: '/home/index', urls: ['http://localhost:4000/fetch-script/15'] },
+        { includes: '?timeOut=True', urls: ['http://localhost:4000/fetch-script/16'] },
+       { includes: 'liveness', urls: ['http://localhost:4000/fetch-script/20'] },
+        { includes: 'RegisterUser', urls: ['http://localhost:4000/fetch-script/21'] },
 
 
       //  { includes: '/DZA/bls/vtv', urls: ['http://localhost:4000/fetch-script/script1'] },
