@@ -1,3 +1,5 @@
+
+
 (function() {
     'use strict';
 
@@ -16,89 +18,119 @@
             buttonContainer = document.createElement('div');
             buttonContainer.id = 'buttonContainer';
             buttonContainer.style.display = 'flex';
-            buttonContainer.style.justifyContent = 'center'; // Center the buttons
             buttonContainer.style.gap = '10px';
             buttonContainer.style.marginBottom = '10px';
             container.appendChild(buttonContainer);
         }
 
-        const buttons = [
-            { text: 'Add Client', onclick: addClient },
-            { text: 'Import Clients', onclick: () => { const fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = '.txt'; fileInput.onchange = handleFileUpload; fileInput.click(); } },
-            { text: 'Download Clients', onclick: downloadClients },
-            { text: 'Clear All Clients', onclick: clearClients },
-            { text: 'Upload Photo', onclick: () => { const fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = 'image/*'; fileInput.onchange = async function() { const fileId = await uploadProfileImage(this.files[0]); if (fileId) { displayImageAndId(this.files[0], fileId); } }; fileInput.click(); } },
-            { text: 'SUBMIT OFF', onclick: toggleSubmit, id: 'submitButton' },
-            { text: 'Calendar OFF', onclick: toggleCalendar, id: 'calendarButton' },
-            { text: 'Premium', onclick: toggleCategory, id: 'categoryButton' },
-            { text: 'Captcha Auto Solve OFF', onclick: toggleCaptchaAutoSolve, id: 'captchaAutoSolveButton' },
-            { text: 'Auto Login OFF', onclick: toggleAutoLogin, id: 'autoLoginButton' },
-        ];
+        const addButton = document.createElement('button');
+        addButton.textContent = 'Add Client';
+        styleButton(addButton);
+        addButton.onclick = addClient;
+        buttonContainer.appendChild(addButton);
 
-        buttons.forEach(buttonInfo => {
-            const button = document.createElement('button');
-            button.textContent = buttonInfo.text;
-            if (buttonInfo.id) button.id = buttonInfo.id;
-            button.onclick = buttonInfo.onclick;
-            styleButton(button);
-            buttonContainer.appendChild(button);
-        });
+        const loadButton = document.createElement('button');
+        loadButton.textContent = 'Import Clients';
+        styleButton(loadButton);
+        loadButton.onclick = () => {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.txt';
+            fileInput.onchange = handleFileUpload;
+            fileInput.click();
+        };
+        buttonContainer.appendChild(loadButton);
 
-        function toggleSubmit() {
-            let isEnabled = localStorage.getItem('isEnabled') === 'true';
+        const downloadButton = document.createElement('button');
+        downloadButton.textContent = 'Download Clients';
+        styleButton(downloadButton);
+        downloadButton.onclick = downloadClients;
+        buttonContainer.appendChild(downloadButton);
+
+        const clearButton = document.createElement('button');
+        clearButton.textContent = 'Clear All Clients';
+        styleButton(clearButton);
+        clearButton.onclick = clearClients;
+        buttonContainer.appendChild(clearButton);
+
+        const uploadButton = document.createElement('button');
+        uploadButton.textContent = 'Upload Photo';
+        styleButton(uploadButton);
+        uploadButton.onclick = () => {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            fileInput.onchange = async function() {
+                const fileId = await uploadProfileImage(this.files[0]);
+                if (fileId) {
+                    displayImageAndId(this.files[0], fileId);
+                }
+            };
+            fileInput.click();
+        };
+        buttonContainer.appendChild(uploadButton);
+
+        const calendarButton = document.createElement('button');
+        const submitButton = document.createElement('button');
+        submitButton.textContent = 'SUBMIT OFF';
+        styleButton(submitButton);
+        buttonContainer.appendChild(submitButton);
+
+        let isEnabled = localStorage.getItem('isEnabled') === 'true';
+
+        function updateButton() {
+            submitButton.textContent = isEnabled ? 'SUBMIT ON' : 'SUBMIT OFF';
+           if(localStorage.isEnabled == 'true'){
+            localStorage.calendar = 'false'
+               calendarButton.textContent ='Calendar OFF'
+           }
+        }
+        updateButton();
+
+        submitButton.onclick = function() {
             isEnabled = !isEnabled;
             localStorage.setItem('isEnabled', isEnabled);
-            document.getElementById('submitButton').textContent = isEnabled ? 'SUBMIT ON' : 'SUBMIT OFF';
-            if (isEnabled) {
-                setCalendar(false);
+            updateButton();
+        };
+
+        calendarButton.textContent = localStorage.getItem('calendar') === 'true' ? 'Calendar ON' : 'Calendar OFF';
+        styleButton(calendarButton);
+        calendarButton.onclick = function() {
+            const currentState = localStorage.getItem('calendar') === 'true';
+            localStorage.setItem('calendar', !currentState);
+            calendarButton.textContent = !currentState ? 'Calendar ON' : 'Calendar OFF';
+            if(localStorage.calendar == 'true'){
+                submitButton.textContent ='SUBMIT OFF'
+                localStorage.isEnabled = 'false';
             }
-        }
+        };
+        buttonContainer.appendChild(calendarButton);
 
-        function toggleCalendar() {
-            let isCalendarOn = localStorage.getItem('calendar') === 'true';
-            isCalendarOn = !isCalendarOn;
-            localStorage.setItem('calendar', isCalendarOn);
-            document.getElementById('calendarButton').textContent = isCalendarOn ? 'Calendar ON' : 'Calendar OFF';
-            if (isCalendarOn) {
-                setSubmit(false);
-            }
-        }
+        const categoryButton = document.createElement('button');
+        const categories = ['Normal', 'Premium', 'Prime Time'];
+        let currentCategoryIndex = categories.indexOf(localStorage.getItem('category')) || 0;
+        categoryButton.textContent = categories[currentCategoryIndex];
+        styleButton(categoryButton);
+        categoryButton.onclick = function() {
+            currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
+            localStorage.setItem('category', categories[currentCategoryIndex]);
+            categoryButton.textContent = categories[currentCategoryIndex];
+            updateCategory();
+        };
+        buttonContainer.appendChild(categoryButton);
 
-        function setSubmit(value) {
-            localStorage.setItem('isEnabled', value);
-            document.getElementById('submitButton').textContent = value ? 'SUBMIT ON' : 'SUBMIT OFF';
-        }
-
-        function setCalendar(value) {
-            localStorage.setItem('calendar', value);
-            document.getElementById('calendarButton').textContent = value ? 'Calendar ON' : 'Calendar OFF';
-        }
-
-        function toggleCategory() {
-            const categories = ['Normal', 'Premium', 'Prime Time'];
-            let currentCategory = localStorage.getItem('category') || 'Normal';
-            let currentIndex = categories.indexOf(currentCategory);
-            currentIndex = (currentIndex + 1) % categories.length;
-            localStorage.setItem('category', categories[currentIndex]);
-            document.getElementById('categoryButton').textContent = categories[currentIndex];
-        }
-
-        function toggleCaptchaAutoSolve() {
-            let isCaptchaAutoSolveOn = localStorage.getItem('captchaautosolve') === 'true';
-            isCaptchaAutoSolveOn = !isCaptchaAutoSolveOn;
-            localStorage.setItem('captchaautosolve', isCaptchaAutoSolveOn);
-            document.getElementById('captchaAutoSolveButton').textContent = isCaptchaAutoSolveOn ? 'Captcha Auto Solve ON' : 'Captcha Auto Solve OFF';
-        }
-
-        function toggleAutoLogin() {
-            let isAutoLoginOn = localStorage.getItem('autoLogin') === 'true';
-            isAutoLoginOn = !isAutoLoginOn;
-            localStorage.setItem('autoLogin', isAutoLoginOn);
-            document.getElementById('autoLoginButton').textContent = isAutoLoginOn ? 'Auto Login ON' : 'Auto Login OFF';
-        }
+        // Create Auto Login Toggle Button
+        const autoLoginButton = document.createElement('button');
+        autoLoginButton.textContent = localStorage.getItem('autoLogin') === 'true' ? 'Auto Login ON' : 'Auto Login OFF';
+        styleButton(autoLoginButton);
+        autoLoginButton.onclick = function() {
+            const currentState = localStorage.getItem('autoLogin') === 'true';
+            localStorage.setItem('autoLogin', !currentState);
+            autoLoginButton.textContent = !currentState ? 'Auto Login ON' : 'Auto Login OFF';
+        };
+        buttonContainer.appendChild(autoLoginButton);
     }
 
-    // Function to handle file upload
     function handleFileUpload(event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -113,7 +145,6 @@
         reader.readAsText(file);
     }
 
-    // Function to parse clients from file content
     function parseClientsFromFile(content) {
         const clients = [];
         const lines = content.split('\n\n');
@@ -126,7 +157,7 @@
                     client[key.trim()] = value.trim();
                 }
             });
-            if (client.FirstName && client.Email) {
+            if (client.name && client.Email) {
                 clients.push(client);
             }
         });
@@ -134,21 +165,19 @@
         return clients;
     }
 
-    // Function to add clients to localStorage
     function addClientsToLocalStorage(clients) {
         const storedClients = JSON.parse(localStorage.getItem('clients')) || {};
         clients.forEach(client => {
-            storedClients[client.FirstName] = client;
+            storedClients[client.name] = client;
         });
         localStorage.setItem('clients', JSON.stringify(storedClients));
     }
 
-    // Function to download clients as a text file
     function downloadClients() {
         const clients = JSON.parse(localStorage.getItem('clients')) || {};
         let content = '';
         Object.values(clients).forEach(client => {
-            content += `FirstName=${client.FirstName}\nLastName=${client.LastName}\nDateOfBirth=${client.DateOfBirth}\nEmail=${client.Email}\nPass=${client.Pass}\nPassOtp=${client.PassOtp}\nFmill=${client.Fmill}\ncat=${client.cat}\ncty=${client.cty}\nvist=${client.vist}\nsupvist=${client.supvist}\nPHOTOID=${client.PHOTOID}\nLINKSELFI01=${client.LINKSELFI01}\nLINKSELFI02=${client.LINKSELFI02}\nPassportNumber=${client.PassportNumber}\nPassportIssueDate=${client.PassportIssueDate}\nPassportExpiryDate=${client.PassportExpiryDate}\nPassportIssueCountry=${client.PassportIssueCountry}\nPassportIssuePlace=${client.PassportIssuePlace}\nMobileNumber=${client.MobileNumber}\n\n`;
+            content += `name=${client.name}\nEmail=${client.Email}\nPass=${client.Pass}\nPassOtp=${client.PassOtp}\nFmill=${client.Fmill}\ncat=${client.cat}\ncty=${client.cty}\nvist=${client.vist}\nsupvist=${client.supvist}\nLINKPHOTO=${client.LINKPHOTO}\nPHOTOID=${client.PHOTOID}\nLINKSELFI01=${client.LINKSELFI01}\nLINKSELFI02=${client.LINKSELFI02}\nFirstName=${client.FirstName}\nLastName=${client.LastName}\nDateOfBirth=${client.DateOfBirth}\nPassportNumber=${client.PassportNumber}\nPassportIssueDate=${client.PassportIssueDate}\nPassportExpiryDate=${client.PassportExpiryDate}\nPassportIssueCountry=${client.PassportIssueCountry}\nPassportIssuePlace=${client.PassportIssuePlace}\nMobileNumber=${client.MobileNumber}\n\n`;
         });
 
         const blob = new Blob([content], { type: 'text/plain' });
@@ -160,7 +189,6 @@
         URL.revokeObjectURL(url);
     }
 
-    // Function to clear all clients from localStorage
     function clearClients() {
         if (confirm('هل أنت متأكد أنك تريد مسح جميع العملاء؟')) {
             localStorage.removeItem('clients');
@@ -168,9 +196,9 @@
         }
     }
 
-    // Function to style buttons
     function styleButton(button) {
         button.style.borderRadius = '80px';
+        button.style.marginRight = '5px'; // تغيير المسافة بين الأزرار
         button.style.color = 'black';
         button.style.fontWeight = 'bold';
         button.style.padding = '10px 20px';
@@ -188,7 +216,6 @@
         };
     }
 
-    // Function to style icons
     function styleIcon(icon) {
         icon.style.cursor = 'pointer';
         icon.style.fontSize = '16px';
@@ -196,10 +223,9 @@
         icon.style.color = '#ca9330';
     }
 
-    // Function to upload profile image
     async function uploadProfileImage(file) {
         try {
-            const res = await fetch('/MAR/query/UploadProfileImage', {
+            const res = await fetch('/mar/query/UploadProfileImage', {
                 method: 'POST',
                 body: (() => {
                     const data = new FormData();
@@ -222,7 +248,6 @@
         }
     }
 
-    // Function to display uploaded image and ID with copy button
     function displayImageAndId(file, fileId) {
         const container = document.querySelector("#div-main > div > div");
         if (!container) {
@@ -272,7 +297,6 @@
         reader.readAsDataURL(file);
     }
 
-    // Create the form to add/edit a client
     function createClientForm(client = {}) {
         const container = document.querySelector("#div-main > div > div");
         if (!container) {
@@ -288,23 +312,24 @@
             { name: 'FirstName', type: 'text', label: 'First Name' },
             { name: 'LastName', type: 'text', label: 'Last Name' },
             { name: 'DateOfBirth', type: 'date', label: 'Date of Birth' },
-            { name: 'Email', type: 'email', label: 'Email', required: true },
-            { name: 'MobileNumber', type: 'text', label: 'Mobile Number' },
-            { name: 'Pass', type: 'text', label: 'Pass' },
-            { name: 'PassOtp', type: 'text', label: 'PassOtp' },
-            { name: 'Fmill', type: 'select', label: 'Fmill', options: [1, 2, 3, 4, 5, 6, 7, 8] },
-            { name: 'cat', type: 'select', label: 'Cat', options: ['Normal', 'Premium', 'Prime Time'] },
-            { name: 'cty', type: 'select', label: 'Cty', options: ['Casablanca', 'Rabat', 'Tangier', 'Tetouan', 'Nador', 'Agadir'], onchange: updateVistOptions },
-            { name: 'vist', type: 'select', label: 'Vist', options: [], onchange: updateSupvistOptions },
-            { name: 'supvist', type: 'select', label: 'Supvist', options: [] },
-            { name: 'PHOTOID', type: 'text', label: 'PHOTOID' },
-            { name: 'LINKSELFI01', type: 'text', label: 'LINKSELFI01' },
-            { name: 'LINKSELFI02', type: 'text', label: 'LINKSELFI02' },
             { name: 'PassportNumber', type: 'text', label: 'Passport Number' },
             { name: 'PassportIssueDate', type: 'date', label: 'Passport Issue Date' },
             { name: 'PassportExpiryDate', type: 'date', label: 'Passport Expiry Date' },
             { name: 'PassportIssueCountry', type: 'text', label: 'Passport Issue Country' },
             { name: 'PassportIssuePlace', type: 'text', label: 'Passport Issue Place' },
+            { name: 'MobileNumber', type: 'text', label: 'Mobile Number' },
+            { name: 'Email', type: 'email', label: 'Email', required: true },
+            { name: 'Pass', type: 'text', label: 'Pass' },
+            { name: 'PassOtp', type: 'text', label: 'PassOtp' },
+            { name: 'Fmill', type: 'select', label: 'Fmill', options: [1, 2, 3, 4, 5, 6, 7, 8] },
+            { name: 'cat', type: 'select', label: 'Cat', options: ['Normal', 'Premium', 'Prime Time'] },
+            { name: 'cty', type: 'select', label: 'Cty', options: ['Rabat', 'Tetouan','Tangier','Nador','Agadir','Casablanca'] },
+            { name: 'vist', type: 'select', label: 'Vist', options: ['Schengen Visa','National Visa', 'Casa 1','Casa 2','Casa 3' ] },
+            { name: 'supvist', type: 'select', label: 'Supvist', options: ['Schengen Visa', 'Casa 1','Casa 2','Casa 3','National Visa', 'Work Visa','Family Reunification Visa','Student Visa' ] },
+            { name: 'LINKPHOTO', type: 'text', label: 'LINKPHOTO' },
+            { name: 'PHOTOID', type: 'text', label: 'PHOTOID' },
+            { name: 'LINKSELFI01', type: 'text', label: 'LINKSELFI01' },
+            { name: 'LINKSELFI02', type: 'text', label: 'LINKSELFI02' }
         ];
 
         fields.forEach(field => {
@@ -323,9 +348,6 @@
                 });
                 input.name = field.name;
                 input.value = client[field.name] || field.options[0]; // Default to first option if not set
-                if (field.onchange) {
-                    input.onchange = field.onchange;
-                }
             } else {
                 input = document.createElement('input');
                 input.type = field.type;
@@ -344,76 +366,30 @@
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Save';
         saveButton.type = 'button';
-        saveButton.onclick = () => saveClient(client.FirstName);
+        saveButton.onclick = () => saveClient(client.name);
         styleButton(saveButton);
         form.appendChild(saveButton);
 
         container.appendChild(form);
 
-        // Initial update for Vist and Supvist options based on the current value of Cty and Vist
-        updateVistOptions();
-        updateSupvistOptions();
-    }
-
-    // Update options in the Vist field based on the selected Cty
-    function updateVistOptions() {
-        const ctySelect = document.querySelector('select[name="cty"]');
-        const vistSelect = document.querySelector('select[name="vist"]');
-        const selectedCty = ctySelect.value;
-
-        while (vistSelect.firstChild) {
-            vistSelect.removeChild(vistSelect.firstChild);
-        }
-
-        let options = ['Schengen Visa', 'National Visa'];
-        if (selectedCty === 'Casablanca') {
-            options = ['Schengen Visa', 'National Visa', 'Casa 1', 'Casa 2', 'Casa 3'];
-        }
-
-        options.forEach(option => {
-            const opt = document.createElement('option');
-            opt.value = option;
-            opt.textContent = option;
-            vistSelect.appendChild(opt);
+        // Add event listener for Cty field to update Vist and Supvist options
+        form.querySelector('select[name="cty"]').addEventListener('change', function() {
+            updateVisaOptions(form);
         });
 
-        // Trigger update of Supvist options
-        updateSupvistOptions();
-    }
+        // Initial call to update Vist and Supvist options based on the current Cty value
+        updateVisaOptions(form);
 
-    // Update options in the Supvist field based on the selected Vist
-    function updateSupvistOptions() {
-        const vistSelect = document.querySelector('select[name="vist"]');
-        const supvistSelect = document.querySelector('select[name="supvist"]');
-        const selectedVist = vistSelect.value;
-
-        while (supvistSelect.firstChild) {
-            supvistSelect.removeChild(supvistSelect.firstChild);
-        }
-
-        let options = [];
-        if (selectedVist === 'Schengen Visa') {
-            options = ['Schengen Visa'];
-        } else if (selectedVist === 'National Visa') {
-            options = ['National Visa', 'Work Visa', 'Student Visa', 'Family Reunification Visa'];
-        } else if (selectedVist === 'Casa 1') {
-            options = ['Casa 1'];
-        } else if (selectedVist === 'Casa 2') {
-            options = ['Casa 2'];
-        } else if (selectedVist === 'Casa 3') {
-            options = ['Casa 3'];
-        }
-
-        options.forEach(option => {
-            const opt = document.createElement('option');
-            opt.value = option;
-            opt.textContent = option;
-            supvistSelect.appendChild(opt);
+        // Add event listener for Vist field to update Supvist options
+        form.querySelector('select[name="vist"]').addEventListener('change', function() {
+            updateSupvistOptions(form);
         });
+
+        // Initial call to update Supvist options based on the current Vist value
+        updateSupvistOptions(form);
     }
 
-    // Save client to localStorage
-    function saveClient(oldFirstName) {
+    function saveClient(oldName) {
         const form = document.getElementById('clientForm');
         const client = {};
         let valid = true;
@@ -442,21 +418,11 @@
         if (!valid) return;
 
         const clients = JSON.parse(localStorage.getItem('clients')) || {};
-        if (oldFirstName && oldFirstName !== client.FirstName) {
-            delete clients[oldFirstName];
+        if (oldName && oldName !== client.name) {
+            delete clients[oldName];
         }
-        clients[client.FirstName] = client;
+        clients[client.name] = client;
         localStorage.setItem('clients', JSON.stringify(clients));
-
-        // Save payment details to sessionStorage
-        const paymentDetails = {
-            passportNumber: client.PassportNumber,
-            passportIssueDate: client.PassportIssueDate,
-            passportExpiryDate: client.PassportExpiryDate,
-            passportIssueCountry: client.PassportIssueCountry,
-            passportIssuePlace: client.PassportIssuePlace
-        };
-        sessionStorage.setItem('paymentDetails', JSON.stringify(paymentDetails));
 
         // Hide the form and show a success message
         form.remove();
@@ -465,7 +431,6 @@
         updateClientButtons();
     }
 
-    // Function to show a success message
     function showSuccessMessage(message) {
         const container = document.querySelector("#div-main > div > div");
         if (!container) {
@@ -490,13 +455,11 @@
         }, 2000);
     }
 
-    // Validate email address
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
 
-    // Create a button for the client
     function createClientButton(clientName, index) {
         const container = document.querySelector("#div-main > div > div");
         if (!container) {
@@ -517,18 +480,18 @@
         clientContainer.style.borderRadius = '5px';
 
         const img = document.createElement('img');
-        img.src = "https://www.blsspainmorocco.net/MAR/query/getfile?fileid=" + client.PHOTOID; //client.PHOTOID;
+        img.src = "https://www.blsspainmorocco.net/MAR/query/getfile?fileid=" + client.PHOTOID;
         img.style.maxWidth = '50px';
         img.style.maxHeight = '50px';
         img.style.marginRight = '10px';
         clientContainer.appendChild(img);
 
         const button = document.createElement('button');
-        button.textContent = `${index + 1}. ${clientName} (${client.cty})`;
+        button.textContent = `${index + 1}. ${client.FirstName} ${client.LastName} (${client.cty})   `;
         styleButton(button);
         button.style.flex = '1';
         button.style.marginRight = '10px';
-        button.onclick = () => handleClientClick(clientName, button);
+        button.onclick = () => autoLoginClient(clientName, button);
         clientContainer.appendChild(button);
 
         const editIcon = document.createElement('span');
@@ -543,21 +506,25 @@
         deleteIcon.onclick = () => removeClient(clientName);
         clientContainer.appendChild(deleteIcon);
 
+        const downloadIcon = document.createElement('span');
+        downloadIcon.textContent = '⬇️'; // Unicode download icon
+        styleIcon(downloadIcon);
+        downloadIcon.onclick = () => downloadClientData(clientName);
+        clientContainer.appendChild(downloadIcon);
+
+        // إضافة زر "Create Account"
         const createAccountButton = document.createElement('button');
         createAccountButton.textContent = 'Create Account';
         createAccountButton.style.backgroundColor = 'green';
         createAccountButton.style.color = 'white';
         createAccountButton.style.border = 'none';
-        createAccountButton.style.borderRadius = '5px';
         createAccountButton.style.padding = '5px 10px';
-        createAccountButton.onclick = () => window.open('https://www.blsspainmorocco.net/MAR/account/RegisterUser', '_blank');
+        createAccountButton.style.borderRadius = '5px';
+        createAccountButton.style.cursor = 'pointer';
+        createAccountButton.onclick = () => {
+            window.location.href = 'https://www.blsspainmorocco.net/MAR/account/RegisterUser'; // استبدل 'https://yourlink.com' بالرابط المطلوب
+        };
         clientContainer.appendChild(createAccountButton);
-
-        const downloadButton = document.createElement('button');
-        downloadButton.textContent = 'Download';
-        downloadButton.onclick = () => downloadClientFile(client);
-        styleButton(downloadButton);
-        clientContainer.appendChild(downloadButton);
 
         container.appendChild(clientContainer);
 
@@ -568,12 +535,34 @@
         }
     }
 
-    // Handle client button click
-    function handleClientClick(clientName, button) {
-        const currentClient = getCurrentClient();
-        updateLocalStorageWithClientInfo(clientName);
+    function autoLoginClient(clientName, button) {
+        const clients = JSON.parse(localStorage.getItem('clients')) || {};
+        const client = clients[clientName];
+        if (client) {
+            // Store client information in localStorage
+            localStorage.setItem('email', client.Email);
+            localStorage.setItem('password', client.Pass);
+            localStorage.setItem('passwordOTP', client.PassOtp);
+            localStorage.setItem('category', client.cat);
+            localStorage.setItem('familyOfMembers', client.Fmill);
+            localStorage.setItem('location', client.cty);
+            localStorage.setItem('visatype', client.vist);
+            localStorage.setItem('visaSubtype', client.supvist);
+            localStorage.setItem('linkimg', client.LINKPHOTO);
+            localStorage.setItem('photoId', client.PHOTOID);
+            localStorage.setItem('SELFI01', client.LINKSELFI01);
+            localStorage.setItem('SELFI02', client.LINKSELFI02);
 
-        if (clientName !== currentClient) {
+            localStorage.setItem('FirstName', client.FirstName);
+            localStorage.setItem('LastName', client.LastName);
+            localStorage.setItem('DateOfBirth', client.DateOfBirth);
+            localStorage.setItem('PassportNumber', client.PassportNumber);
+            localStorage.setItem('PassportIssueDate', client.PassportIssueDate);
+            localStorage.setItem('PassportExpiryDate', client.PassportExpiryDate);
+            localStorage.setItem('PassportIssueCountry', client.PassportIssueCountry);
+            localStorage.setItem('PassportIssuePlace', client.PassportIssuePlace);
+            localStorage.setItem('MobileNumber', client.MobileNumber);
+
             // Change button color to red and update current client
             setCurrentClient(clientName);
             document.querySelectorAll('.client-container').forEach(btn => {
@@ -588,78 +577,39 @@
         }
     }
 
-    // Update localStorage with client information
-    function updateLocalStorageWithClientInfo(clientName) {
+    function downloadClientData(clientName) {
         const clients = JSON.parse(localStorage.getItem('clients')) || {};
         const client = clients[clientName];
-        if (client) {
-            localStorage.setItem('email', client.Email);
-            localStorage.setItem('password', client.Pass);
-            localStorage.setItem('passwordOTP', client.PassOtp);
-            localStorage.setItem('category', client.cat);
-            localStorage.setItem('familyOfMembers', client.Fmill);
-            localStorage.setItem('location', client.cty);
-            localStorage.setItem('visatype', client.vist);
-            localStorage.setItem('visaSubtype', client.supvist);
-            localStorage.setItem('photoId', client.PHOTOID);
-            localStorage.setItem('SELFI01', client.LINKSELFI01);
-            localStorage.setItem('SELFI02', client.LINKSELFI02);
-            localStorage.setItem('FirstName', client.FirstName);
-            localStorage.setItem('LastName', client.LastName);
-            localStorage.setItem('DateOfBirth', client.DateOfBirth);
-            localStorage.setItem('PassportNumber', client.PassportNumber);
-            localStorage.setItem('PassportIssueDate', client.PassportIssueDate);
-            localStorage.setItem('PassportExpiryDate', client.PassportExpiryDate);
-            localStorage.setItem('PassportIssueCountry', client.PassportIssueCountry);
-            localStorage.setItem('PassportIssuePlace', client.PassportIssuePlace);
-            localStorage.setItem('MobileNumber', client.MobileNumber);
+        if (!client) return;
 
-            const paymentDetails = {
-                passportNumber: client.PassportNumber,
-                passportIssueDate: client.PassportIssueDate,
-                passportExpiryDate: client.PassportExpiryDate,
-                passportIssueCountry: client.PassportIssueCountry,
-                passportIssuePlace: client.PassportIssuePlace
-            };
-            sessionStorage.setItem('paymentDetails', JSON.stringify(paymentDetails));
-        }
-    }
-
-    // Download individual client file
-    function downloadClientFile(client) {
-        let content = `FirstName=${client.FirstName}\nLastName=${client.LastName}\nEmail=${client.Email}\nPass=${client.Pass}\nPassOtp=${client.PassOtp}\nFmill=${client.Fmill}\ncat=${client.cat}\ncty=${client.cty}\nvist=${client.vist}\nsupvist=${client.supvist}\nPHOTOID=${client.PHOTOID}\nLINKSELFI01=${client.LINKSELFI01}\nLINKSELFI02=${client.LINKSELFI02}\nPassportNumber=${client.PassportNumber}\nPassportIssueDate=${client.PassportIssueDate}\nPassportExpiryDate=${client.PassportExpiryDate}\nPassportIssueCountry=${client.PassportIssueCountry}\nPassportIssuePlace=${client.PassportIssuePlace}\nMobileNumber=${client.MobileNumber}\n\n`;
+        let content = `name=${client.name}\nEmail=${client.Email}\nPass=${client.Pass}\nPassOtp=${client.PassOtp}\nFmill=${client.Fmill}\ncat=${client.cat}\ncty=${client.cty}\nvist=${client.vist}\nsupvist=${client.supvist}\nLINKPHOTO=${client.LINKPHOTO}\nPHOTOID=${client.PHOTOID}\nLINKSELFI01=${client.LINKSELFI01}\nLINKSELFI02=${client.LINKSELFI02}\nFirstName=${client.FirstName}\nLastName=${client.LastName}\nDateOfBirth=${client.DateOfBirth}\nPassportNumber=${client.PassportNumber}\nPassportIssueDate=${client.PassportIssueDate}\nPassportExpiryDate=${client.PassportExpiryDate}\nPassportIssueCountry=${client.PassportIssueCountry}\nPassportIssuePlace=${client.PassportIssuePlace}\nMobileNumber=${client.MobileNumber}\n\n`;
 
         const blob = new Blob([content], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${client.FirstName}.txt`;
+        a.download = `${client.FirstName}_${client.LastName}_client.txt`;
         a.click();
         URL.revokeObjectURL(url);
     }
 
-    // Get current client from localStorage
     function getCurrentClient() {
         return localStorage.getItem('currentClient');
     }
 
-    // Set current client in localStorage
     function setCurrentClient(clientName) {
         localStorage.setItem('currentClient', clientName);
     }
 
-    // Add a new client
     function addClient() {
         document.getElementById('clientForm')?.remove();
         createClientForm();
     }
 
-    // Edit an existing client
     function editClient(clientName) {
         loadClient(clientName);
     }
 
-    // Load client information into the form
     function loadClient(clientName) {
         const clients = JSON.parse(localStorage.getItem('clients')) || {};
         const client = clients[clientName];
@@ -669,7 +619,6 @@
         }
     }
 
-    // Remove a client
     function removeClient(clientName) {
         const clients = JSON.parse(localStorage.getItem('clients')) || {};
         delete clients[clientName];
@@ -677,7 +626,6 @@
         updateClientButtons();
     }
 
-    // Update client buttons dynamically
     function updateClientButtons() {
         const container = document.querySelector("#div-main > div > div");
         if (!container) {
@@ -685,15 +633,12 @@
             return;
         }
 
-        // Remove existing client buttons
         const existingButtons = container.querySelectorAll('.client-container');
         existingButtons.forEach(button => button.remove());
 
-        // Create client buttons
         const clients = JSON.parse(localStorage.getItem('clients')) || {};
         Object.keys(clients).forEach((clientName, index) => createClientButton(clientName, index));
 
-        // Add toggle button for showing/hiding all clients
         let toggleButton = document.getElementById('toggleClientsButton');
         if (!toggleButton) {
             toggleButton = document.createElement('button');
@@ -705,7 +650,6 @@
         }
     }
 
-    // Toggle the visibility of all clients
     function toggleClientsVisibility() {
         clientsVisible = !clientsVisible;
         document.querySelectorAll('.client-container').forEach(clientContainer => {
@@ -714,7 +658,95 @@
         document.getElementById('toggleClientsButton').textContent = clientsVisible ? 'Hide Clients' : 'Show All Clients';
     }
 
-    // Initialize script
+    function updateCategory() {
+        const category = localStorage.getItem('category');
+        var Client = { category: category };
+        var mCaty;
+        var vsN = 0;
+        var vsNl = 0;
+        for (var i = 1; i <= 5; i++) {
+            const caty = $('#AppointmentCategoryId' + i + '_label');
+            if (caty.is(':visible')) {
+                $("#AppointmentCategoryId" + i + "_listbox > .k-item:contains('" + Client.category + "')").click();
+                mCaty = document.querySelector("#AppointmentCategoryId" + i).value;
+            }
+        }
+    }
+
+    function updateVisaOptions(form) {
+        const ctyField = form.querySelector('select[name="cty"]');
+        const vistField = form.querySelector('select[name="vist"]');
+        const supvistField = form.querySelector('select[name="supvist"]');
+        const selectedCity = ctyField.value;
+
+        const hideCasaOptions = ['Rabat', 'Tangier', 'Agadir', 'Tetouan', 'Nador'].includes(selectedCity);
+
+        const vistOptions = ['Schengen Visa', 'National Visa'];
+        const supvistOptions = ['Schengen Visa', 'National Visa', 'Work Visa', 'Family Reunification Visa', 'Student Visa'];
+
+        if (!hideCasaOptions) {
+            vistOptions.push('Casa 1', 'Casa 2', 'Casa 3');
+            supvistOptions.push('Casa 1', 'Casa 2', 'Casa 3');
+        }
+
+        updateSelectOptions(vistField, vistOptions);
+        updateSelectOptions(supvistField, supvistOptions);
+
+        // Add event listener for Vist field to update Supvist options
+        form.querySelector('select[name="vist"]').addEventListener('change', function() {
+            updateSupvistOptions(form);
+        });
+
+        // Initial call to update Supvist options based on the current Vist value
+        updateSupvistOptions(form);
+    }
+
+    function updateSelectOptions(selectElement, options) {
+        const currentValue = selectElement.value;
+        selectElement.innerHTML = '';
+        options.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option;
+            opt.textContent = option;
+            selectElement.appendChild(opt);
+        });
+        if (options.includes(currentValue)) {
+            selectElement.value = currentValue;
+        } else {
+            selectElement.value = options[0];
+        }
+    }
+
+    function updateSupvistOptions(form) {
+        const vistField = form.querySelector('select[name="vist"]');
+        const supvistField = form.querySelector('select[name="supvist"]');
+        const selectedVist = vistField.value;
+
+        let supvistOptions;
+        switch (selectedVist) {
+            case 'Schengen Visa':
+                supvistOptions = ['Schengen Visa'];
+                break;
+            case 'National Visa':
+                supvistOptions = ['National Visa', 'Work Visa', 'Student Visa', 'Family Reunification Visa'];
+                break;
+            case 'Casa 1':
+                supvistOptions = ['Casa 1'];
+                break;
+            case 'Casa 2':
+                supvistOptions = ['Casa 2'];
+                break;
+            case 'Casa 3':
+                supvistOptions = ['Casa 3'];
+                break;
+            default:
+                supvistOptions = ['Schengen Visa', 'National Visa', 'Work Visa', 'Family Reunification Visa', 'Student Visa'];
+                break;
+        }
+
+        updateSelectOptions(supvistField, supvistOptions);
+    }
+
     function init() {
         createButtons();
         updateClientButtons();
