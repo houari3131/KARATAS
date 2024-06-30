@@ -49,6 +49,9 @@
             isEnabled = !isEnabled;
             localStorage.setItem('isEnabled', isEnabled);
             document.getElementById('submitButton').textContent = isEnabled ? 'SUBMIT ON' : 'SUBMIT OFF';
+            if (isEnabled) {
+                setCalendar(false);
+            }
         }
 
         function toggleCalendar() {
@@ -56,6 +59,19 @@
             isCalendarOn = !isCalendarOn;
             localStorage.setItem('calendar', isCalendarOn);
             document.getElementById('calendarButton').textContent = isCalendarOn ? 'Calendar ON' : 'Calendar OFF';
+            if (isCalendarOn) {
+                setSubmit(false);
+            }
+        }
+
+        function setSubmit(value) {
+            localStorage.setItem('isEnabled', value);
+            document.getElementById('submitButton').textContent = value ? 'SUBMIT ON' : 'SUBMIT OFF';
+        }
+
+        function setCalendar(value) {
+            localStorage.setItem('calendar', value);
+            document.getElementById('calendarButton').textContent = value ? 'Calendar ON' : 'Calendar OFF';
         }
 
         function toggleCategory() {
@@ -132,7 +148,7 @@
         const clients = JSON.parse(localStorage.getItem('clients')) || {};
         let content = '';
         Object.values(clients).forEach(client => {
-            content += `FirstName=${client.FirstName}\nLastName=${client.LastName}\nEmail=${client.Email}\nPass=${client.Pass}\nPassOtp=${client.PassOtp}\nFmill=${client.Fmill}\ncat=${client.cat}\ncty=${client.cty}\nvist=${client.vist}\nsupvist=${client.supvist}\nPHOTOID=${client.PHOTOID}\nLINKSELFI01=${client.LINKSELFI01}\nLINKSELFI02=${client.LINKSELFI02}\nPassportNumber=${client.PassportNumber}\nPassportIssueDate=${client.PassportIssueDate}\nPassportExpiryDate=${client.PassportExpiryDate}\nPassportIssueCountry=${client.PassportIssueCountry}\nPassportIssuePlace=${client.PassportIssuePlace}\nMobileNumber=${client.MobileNumber}\n\n`;
+            content += `FirstName=${client.FirstName}\nLastName=${client.LastName}\nDateOfBirth=${client.DateOfBirth}\nEmail=${client.Email}\nPass=${client.Pass}\nPassOtp=${client.PassOtp}\nFmill=${client.Fmill}\ncat=${client.cat}\ncty=${client.cty}\nvist=${client.vist}\nsupvist=${client.supvist}\nPHOTOID=${client.PHOTOID}\nLINKSELFI01=${client.LINKSELFI01}\nLINKSELFI02=${client.LINKSELFI02}\nPassportNumber=${client.PassportNumber}\nPassportIssueDate=${client.PassportIssueDate}\nPassportExpiryDate=${client.PassportExpiryDate}\nPassportIssueCountry=${client.PassportIssueCountry}\nPassportIssuePlace=${client.PassportIssuePlace}\nMobileNumber=${client.MobileNumber}\n\n`;
         });
 
         const blob = new Blob([content], { type: 'text/plain' });
@@ -183,7 +199,7 @@
     // Function to upload profile image
     async function uploadProfileImage(file) {
         try {
-            const res = await fetch('/MAR/query/UploadProfileImage', {
+            const res = await fetch('/DZA/query/UploadProfileImage', {
                 method: 'POST',
                 body: (() => {
                     const data = new FormData();
@@ -512,7 +528,7 @@
         styleButton(button);
         button.style.flex = '1';
         button.style.marginRight = '10px';
-        button.onclick = () => autoLoginClient(clientName, button);
+        button.onclick = () => handleClientClick(clientName, button);
         clientContainer.appendChild(button);
 
         const editIcon = document.createElement('span');
@@ -552,34 +568,12 @@
         }
     }
 
-    // Auto login client
-    function autoLoginClient(clientName, button) {
-        const clients = JSON.parse(localStorage.getItem('clients')) || {};
-        const client = clients[clientName];
-        if (client) {
-            // Store client information in localStorage
-            localStorage.setItem('email', client.Email);
-            localStorage.setItem('password', client.Pass);
-            localStorage.setItem('passwordOTP', client.PassOtp);
-            localStorage.setItem('category', client.cat);
-            localStorage.setItem('familyOfMembers', client.Fmill);
-            localStorage.setItem('location', client.cty);
-            localStorage.setItem('visatype', client.vist);
-            localStorage.setItem('visaSubtype', client.supvist);
-            localStorage.setItem('photoId', client.PHOTOID);
-            localStorage.setItem('SELFI01', client.LINKSELFI01);
-            localStorage.setItem('SELFI02', client.LINKSELFI02);
+    // Handle client button click
+    function handleClientClick(clientName, button) {
+        const currentClient = getCurrentClient();
+        updateLocalStorageWithClientInfo(clientName);
 
-            // Store payment details in sessionStorage
-            const paymentDetails = {
-                passportNumber: client.PassportNumber,
-                passportIssueDate: client.PassportIssueDate,
-                passportExpiryDate: client.PassportExpiryDate,
-                passportIssueCountry: client.PassportIssueCountry,
-                passportIssuePlace: client.PassportIssuePlace
-            };
-            sessionStorage.setItem('paymentDetails', JSON.stringify(paymentDetails));
-
+        if (clientName !== currentClient) {
             // Change button color to red and update current client
             setCurrentClient(clientName);
             document.querySelectorAll('.client-container').forEach(btn => {
@@ -591,6 +585,43 @@
 
             // Redirect to login page
             window.location.href = "https://www.blsspainmorocco.net/MAR/account/login";
+        }
+    }
+
+    // Update localStorage with client information
+    function updateLocalStorageWithClientInfo(clientName) {
+        const clients = JSON.parse(localStorage.getItem('clients')) || {};
+        const client = clients[clientName];
+        if (client) {
+            localStorage.setItem('email', client.Email);
+            localStorage.setItem('password', client.Pass);
+            localStorage.setItem('passwordOTP', client.PassOtp);
+            localStorage.setItem('category', client.cat);
+            localStorage.setItem('familyOfMembers', client.Fmill);
+            localStorage.setItem('location', client.cty);
+            localStorage.setItem('visatype', client.vist);
+            localStorage.setItem('visaSubtype', client.supvist);
+            localStorage.setItem('photoId', client.PHOTOID);
+            localStorage.setItem('SELFI01', client.LINKSELFI01);
+            localStorage.setItem('SELFI02', client.LINKSELFI02);
+            localStorage.setItem('FirstName', client.FirstName);
+            localStorage.setItem('LastName', client.LastName);
+            localStorage.setItem('DateOfBirth', client.DateOfBirth);
+            localStorage.setItem('PassportNumber', client.PassportNumber);
+            localStorage.setItem('PassportIssueDate', client.PassportIssueDate);
+            localStorage.setItem('PassportExpiryDate', client.PassportExpiryDate);
+            localStorage.setItem('PassportIssueCountry', client.PassportIssueCountry);
+            localStorage.setItem('PassportIssuePlace', client.PassportIssuePlace);
+            localStorage.setItem('MobileNumber', client.MobileNumber);
+
+            const paymentDetails = {
+                passportNumber: client.PassportNumber,
+                passportIssueDate: client.PassportIssueDate,
+                passportExpiryDate: client.PassportExpiryDate,
+                passportIssueCountry: client.PassportIssueCountry,
+                passportIssuePlace: client.PassportIssuePlace
+            };
+            sessionStorage.setItem('paymentDetails', JSON.stringify(paymentDetails));
         }
     }
 
