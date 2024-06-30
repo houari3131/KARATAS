@@ -115,7 +115,7 @@ $('#btnSubmit').click()
     }, 4500) 
     }
      
-         
+       setTimeout(() => {     
  // Select the element
     var element = document.querySelector(".validation-summary.mb-3.alert.alert-danger.validation-summary-valid");
 
@@ -127,7 +127,7 @@ $('#btnSubmit').click()
  var containsText1=element.textContent.includes("Invalid captcha or email is not verified");
    // Log the result to the console
          
-           setTimeout(() => {
+        
     if ((isVisible && containsText) || (isVisible && containsText1)) {
    
         checkvisibility(0)}else{
