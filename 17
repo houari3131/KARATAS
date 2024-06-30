@@ -7,10 +7,10 @@
     const scriptMappings = [
 
         { includes: 'https://www.blsspainmorocco.net/MAR/', urls: ['http://localhost:4000/fetch-script/script1','http://localhost:4000/fetch-script/script7','http://localhost:4000/fetch-script/script13','http://localhost:4000/fetch-script/script18']},
-        { includes: '/MAR/account/login', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
-        { includes: '/MAR/Account/Login , urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
-        { includes: '/MAR/Account/LogIn', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
-        { includes: '/MAR/account/logIn', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
+        { includes: '/login', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
+        { includes: '/Login', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
+        { includes: '/LogIn', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
+        { includes: '/logIn', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script9'] },
         { includes: '/MAR/NewCaptcha/LoginCaptcha', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script3','http://localhost:4000/fetch-script/script9'] },
         { includes: 'MAR/newcaptcha/logincaptcha', urls: ['http://localhost:4000/fetch-script/script2','http://localhost:4000/fetch-script/script3','http://localhost:4000/fetch-script/script9'] },
 
