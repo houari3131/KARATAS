@@ -112,7 +112,7 @@ $('#btnSubmit').click()
        console.log('You got a Date');
       
     }
-    }, 6000) 
+    }, 5000) 
     }
      
          
@@ -134,4 +134,4 @@ $('#btnSubmit').click()
        console.log('You got a Date');
       
     }
-    }, 7000) 
+    }, 6000) 
