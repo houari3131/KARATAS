@@ -1,8 +1,8 @@
 if(localStorage.calendar == "true"){
 
+  var linkVerfy = "https://www.blsspainmorocco.net/MAR/blsAppointment/ManageAppointment?appointmentFor=" + localStorage.For + "&applicantsNo=" + localStorage.NumberOfFamily + "&visaType=" + localStorage.VisaTypeId + "&visaSubType=" + localStorage.VisaSubTypeId + "&appointmentCategory=" + localStorage.CatId + "&location=" + localStorage.LocationId + '&data=';
 
-
-      var linkVerfy = "https://www.blsspainmorocco.net/MAR/blsAppointment/ManageAppointment?appointmentFor=" + localStorage.For + "&applicantsNo=" + localStorage.NumberOfFamily + "&visaType=" + localStorage.VisaTypeId + "&visaSubType=" + localStorage.VisaSubTypeId + "&appointmentCategory=" + localStorage.CatId + "&location=" + localStorage.LocationId + '&data=';
+    
 const data = new URLSearchParams({
   'AppointmentCategoryId4': '',
   'AppointmentFor4': "Individual",
@@ -72,4 +72,6 @@ xhr.onload = function () {
 xhr.send(data);
 
 
+
 }
+
