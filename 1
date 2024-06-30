@@ -49,9 +49,6 @@
             isEnabled = !isEnabled;
             localStorage.setItem('isEnabled', isEnabled);
             document.getElementById('submitButton').textContent = isEnabled ? 'SUBMIT ON' : 'SUBMIT OFF';
-            if (isEnabled) {
-                setCalendar(false);
-            }
         }
 
         function toggleCalendar() {
@@ -59,19 +56,6 @@
             isCalendarOn = !isCalendarOn;
             localStorage.setItem('calendar', isCalendarOn);
             document.getElementById('calendarButton').textContent = isCalendarOn ? 'Calendar ON' : 'Calendar OFF';
-            if (isCalendarOn) {
-                setSubmit(false);
-            }
-        }
-
-        function setSubmit(value) {
-            localStorage.setItem('isEnabled', value);
-            document.getElementById('submitButton').textContent = value ? 'SUBMIT ON' : 'SUBMIT OFF';
-        }
-
-        function setCalendar(value) {
-            localStorage.setItem('calendar', value);
-            document.getElementById('calendarButton').textContent = value ? 'Calendar ON' : 'Calendar OFF';
         }
 
         function toggleCategory() {
@@ -528,7 +512,7 @@
         styleButton(button);
         button.style.flex = '1';
         button.style.marginRight = '10px';
-        button.onclick = () => handleClientClick(clientName, button);
+        button.onclick = () => autoLoginClient(clientName, button);
         clientContainer.appendChild(button);
 
         const editIcon = document.createElement('span');
@@ -550,7 +534,7 @@
         createAccountButton.style.border = 'none';
         createAccountButton.style.borderRadius = '5px';
         createAccountButton.style.padding = '5px 10px';
-        createAccountButton.onclick = () => window.open('https://www.blsspainmorocco.net/MAR/account/RegisterUser', '_blank');
+        createAccountButton.onclick = () => window.open('https://www.blsspainmorocco.net/MAR/RegisterUser', '_blank');
         clientContainer.appendChild(createAccountButton);
 
         const downloadButton = document.createElement('button');
@@ -568,31 +552,12 @@
         }
     }
 
-    // Handle client button click
-    function handleClientClick(clientName, button) {
-        const currentClient = getCurrentClient();
-        updateLocalStorageWithClientInfo(clientName);
-
-        if (clientName !== currentClient) {
-            // Change button color to red and update current client
-            setCurrentClient(clientName);
-            document.querySelectorAll('.client-container').forEach(btn => {
-                btn.style.backgroundColor = 'white'; // Reset previous button color
-                btn.style.display = 'none'; // Hide all clients
-            });
-            button.parentElement.style.backgroundColor = 'red';
-            button.parentElement.style.display = 'flex'; // Show current client
-
-            // Redirect to login page
-            window.location.href = "https://www.blsspainmorocco.net/MAR/account/login";
-        }
-    }
-
-    // Update localStorage with client information
-    function updateLocalStorageWithClientInfo(clientName) {
+    // Auto login client
+    function autoLoginClient(clientName, button) {
         const clients = JSON.parse(localStorage.getItem('clients')) || {};
         const client = clients[clientName];
         if (client) {
+            // Store client information in localStorage
             localStorage.setItem('email', client.Email);
             localStorage.setItem('password', client.Pass);
             localStorage.setItem('passwordOTP', client.PassOtp);
@@ -605,6 +570,7 @@
             localStorage.setItem('SELFI01', client.LINKSELFI01);
             localStorage.setItem('SELFI02', client.LINKSELFI02);
 
+            // Store payment details in sessionStorage
             const paymentDetails = {
                 passportNumber: client.PassportNumber,
                 passportIssueDate: client.PassportIssueDate,
@@ -613,6 +579,18 @@
                 passportIssuePlace: client.PassportIssuePlace
             };
             sessionStorage.setItem('paymentDetails', JSON.stringify(paymentDetails));
+
+            // Change button color to red and update current client
+            setCurrentClient(clientName);
+            document.querySelectorAll('.client-container').forEach(btn => {
+                btn.style.backgroundColor = 'white'; // Reset previous button color
+                btn.style.display = 'none'; // Hide all clients
+            });
+            button.parentElement.style.backgroundColor = 'red';
+            button.parentElement.style.display = 'flex'; // Show current client
+
+            // Redirect to login page
+            window.location.href = "https://www.blsspainmorocco.net/MAR/account/login";
         }
     }
 
