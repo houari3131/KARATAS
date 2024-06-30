@@ -1,7 +1,7 @@
 if(localStorage.calendar == "true"){
 
 
-$("#btnSubmit").hide();
+
       var linkVerfy = "https://www.blsspainmorocco.net/MAR/blsAppointment/ManageAppointment?appointmentFor=" + localStorage.For + "&applicantsNo=" + localStorage.NumberOfFamily + "&visaType=" + localStorage.VisaTypeId + "&visaSubType=" + localStorage.VisaSubTypeId + "&appointmentCategory=" + localStorage.CatId + "&location=" + localStorage.LocationId + '&data=';
 const data = new URLSearchParams({
   'AppointmentCategoryId4': '',
