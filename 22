@@ -134,4 +134,4 @@ $('#btnSubmit').click()
        console.log('You got a Date');
       
     }
-    }, 4000) 
+    }, 7000) 
