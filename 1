@@ -1,3 +1,12 @@
+// ==UserScript==
+// @name         manage client new
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  Fetch and execute multiple scripts based on URL with includes, retry on failure
+// @author       You
+// @match        https://www.blsspainmorocco.net/*
+// @grant        none
+// ==/UserScript==
 
 (function() {
     'use strict';
@@ -558,6 +567,18 @@
     // Set current client in localStorage
     function setCurrentClient(clientName) {
         localStorage.setItem('currentClient', clientName);
+    }
+    
+     function editClient(clientName) {
+        loadClient(clientName);
+    }
+     function loadClient(clientName) {
+        const clients = JSON.parse(localStorage.getItem('clients')) || {};
+        const client = clients[clientName];
+        if (client) {
+            document.getElementById('clientForm')?.remove();
+            createClientForm(client);
+        }
     }
 
     // Remove a client
