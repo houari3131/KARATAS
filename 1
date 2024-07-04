@@ -1,112 +1,13 @@
-// ==UserScript==
-// @name         manage client new
-// @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  Fetch and execute multiple scripts based on URL with includes, retry on failure
-// @author       You
-// @match        https://www.blsspainmorocco.net/*
-// @grant        none
-// ==/UserScript==
-
 
 (function() {
     'use strict';
 
     let clientsVisible = false;
 
-    // Create the main buttons
-    function createButtons() {
-        const container = document.querySelector("#div-main > div > div");
-        if (!container) {
-            console.error('Container element not found!');
-            return;
-        }
-
-        let buttonContainer = document.getElementById('buttonContainer');
-        if (!buttonContainer) {
-            buttonContainer = document.createElement('div');
-            buttonContainer.id = 'buttonContainer';
-            buttonContainer.style.display = 'flex';
-            buttonContainer.style.justifyContent = 'center'; // Center the buttons
-            buttonContainer.style.gap = '10px';
-            buttonContainer.style.marginBottom = '10px';
-            container.appendChild(buttonContainer);
-        }
-
-        const buttons = [
-            { text: 'Add Client', onclick: addClient },
-            { text: 'Import Clients', onclick: () => { const fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = '.txt'; fileInput.onchange = handleFileUpload; fileInput.click(); } },
-            { text: 'Download Clients', onclick: downloadClients },
-            { text: 'Clear All Clients', onclick: clearClients },
-            { text: 'Upload Photo', onclick: () => { const fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = 'image/*'; fileInput.onchange = async function() { const fileId = await uploadProfileImage(this.files[0]); if (fileId) { displayImageAndId(this.files[0], fileId); } }; fileInput.click(); } },
-            { text: 'SUBMIT OFF', onclick: toggleSubmit, id: 'submitButton' },
-            { text: 'Calendar OFF', onclick: toggleCalendar, id: 'calendarButton' },
-            { text: 'Premium', onclick: toggleCategory, id: 'categoryButton' },
-            { text: 'Captcha Auto Solve OFF', onclick: toggleCaptchaAutoSolve, id: 'captchaAutoSolveButton' },
-            { text: 'Auto Login OFF', onclick: toggleAutoLogin, id: 'autoLoginButton' },
-        ];
-
-        buttons.forEach(buttonInfo => {
-            const button = document.createElement('button');
-            button.textContent = buttonInfo.text;
-            if (buttonInfo.id) button.id = buttonInfo.id;
-            button.onclick = buttonInfo.onclick;
-            styleButton(button);
-            buttonContainer.appendChild(button);
-        });
-
-        function toggleSubmit() {
-            let isEnabled = localStorage.getItem('isEnabled') === 'true';
-            isEnabled = !isEnabled;
-            localStorage.setItem('isEnabled', isEnabled);
-            document.getElementById('submitButton').textContent = isEnabled ? 'SUBMIT ON' : 'SUBMIT OFF';
-            if (isEnabled) {
-                setCalendar(false);
-            }
-        }
-
-        function toggleCalendar() {
-            let isCalendarOn = localStorage.getItem('calendar') === 'true';
-            isCalendarOn = !isCalendarOn;
-            localStorage.setItem('calendar', isCalendarOn);
-            document.getElementById('calendarButton').textContent = isCalendarOn ? 'Calendar ON' : 'Calendar OFF';
-            if (isCalendarOn) {
-                setSubmit(false);
-            }
-        }
-
-        function setSubmit(value) {
-            localStorage.setItem('isEnabled', value);
-            document.getElementById('submitButton').textContent = value ? 'SUBMIT ON' : 'SUBMIT OFF';
-        }
-
-        function setCalendar(value) {
-            localStorage.setItem('calendar', value);
-            document.getElementById('calendarButton').textContent = value ? 'Calendar ON' : 'Calendar OFF';
-        }
-
-        function toggleCategory() {
-            const categories = ['Normal', 'Premium', 'Prime Time'];
-            let currentCategory = localStorage.getItem('category') || 'Normal';
-            let currentIndex = categories.indexOf(currentCategory);
-            currentIndex = (currentIndex + 1) % categories.length;
-            localStorage.setItem('category', categories[currentIndex]);
-            document.getElementById('categoryButton').textContent = categories[currentIndex];
-        }
-
-        function toggleCaptchaAutoSolve() {
-            let isCaptchaAutoSolveOn = localStorage.getItem('captchaautosolve') === 'true';
-            isCaptchaAutoSolveOn = !isCaptchaAutoSolveOn;
-            localStorage.setItem('captchaautosolve', isCaptchaAutoSolveOn);
-            document.getElementById('captchaAutoSolveButton').textContent = isCaptchaAutoSolveOn ? 'Captcha Auto Solve ON' : 'Captcha Auto Solve OFF';
-        }
-
-        function toggleAutoLogin() {
-            let isAutoLoginOn = localStorage.getItem('autoLogin') === 'true';
-            isAutoLoginOn = !isAutoLoginOn;
-            localStorage.setItem('autoLogin', isAutoLoginOn);
-            document.getElementById('autoLoginButton').textContent = isAutoLoginOn ? 'Auto Login ON' : 'Auto Login OFF';
-        }
+    // Add a new client
+    function addClient() {
+        document.getElementById('clientForm')?.remove();
+        createClientForm();
     }
 
     // Function to handle file upload
@@ -659,27 +560,6 @@
         localStorage.setItem('currentClient', clientName);
     }
 
-    // Add a new client
-    function addClient() {
-        document.getElementById('clientForm')?.remove();
-        createClientForm();
-    }
-
-    // Edit an existing client
-    function editClient(clientName) {
-        loadClient(clientName);
-    }
-
-    // Load client information into the form
-    function loadClient(clientName) {
-        const clients = JSON.parse(localStorage.getItem('clients')) || {};
-        const client = clients[clientName];
-        if (client) {
-            document.getElementById('clientForm')?.remove();
-            createClientForm(client);
-        }
-    }
-
     // Remove a client
     function removeClient(clientName) {
         const clients = JSON.parse(localStorage.getItem('clients')) || {};
@@ -723,6 +603,120 @@
             clientContainer.style.display = clientsVisible ? 'flex' : 'none';
         });
         document.getElementById('toggleClientsButton').textContent = clientsVisible ? 'Hide Clients' : 'Show All Clients';
+    }
+
+    // Create the main buttons
+    function createButtons() {
+        const container = document.querySelector("#div-main > div > div");
+        if (!container) {
+            console.error('Container element not found!');
+            return;
+        }
+
+        let buttonContainer = document.getElementById('buttonContainer');
+        if (!buttonContainer) {
+            buttonContainer = document.createElement('div');
+            buttonContainer.id = 'buttonContainer';
+            buttonContainer.style.display = 'flex';
+            buttonContainer.style.justifyContent = 'center'; // Center the buttons
+            buttonContainer.style.gap = '10px';
+            buttonContainer.style.marginBottom = '10px';
+            container.appendChild(buttonContainer);
+        }
+
+        const buttons = [
+            { text: 'Add Client', onclick: addClient },
+            { text: 'Import Clients', onclick: () => { const fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = '.txt'; fileInput.onchange = handleFileUpload; fileInput.click(); } },
+            { text: 'Download Clients', onclick: downloadClients },
+            { text: 'Clear All Clients', onclick: clearClients },
+            { text: 'Upload Photo', onclick: () => { const fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = 'image/*'; fileInput.onchange = async function() { const fileId = await uploadProfileImage(this.files[0]); if (fileId) { displayImageAndId(this.files[0], fileId); } }; fileInput.click(); } },
+            { text: 'SUBMIT OFF', onclick: toggleSubmit, id: 'submitButton' },
+            { text: 'Calendar OFF', onclick: toggleCalendar, id: 'calendarButton' },
+            { text: 'Premium', onclick: toggleCategory, id: 'categoryButton' },
+            { text: 'Captcha Auto Solve OFF', onclick: toggleCaptchaAutoSolve, id: 'captchaAutoSolveButton' },
+            { text: 'Auto Login OFF', onclick: toggleAutoLogin, id: 'autoLoginButton' },
+        ];
+
+        buttons.forEach(buttonInfo => {
+            const button = document.createElement('button');
+            button.textContent = buttonInfo.text;
+            if (buttonInfo.id) button.id = buttonInfo.id;
+            button.onclick = buttonInfo.onclick;
+            styleButton(button);
+            buttonContainer.appendChild(button);
+        });
+
+        restoreButtonStates();
+
+        function toggleSubmit() {
+            let isEnabled = localStorage.getItem('isEnabled') === 'true';
+            isEnabled = !isEnabled;
+            localStorage.setItem('isEnabled', isEnabled);
+            document.getElementById('submitButton').textContent = isEnabled ? 'SUBMIT ON' : 'SUBMIT OFF';
+            if (isEnabled) {
+                setCalendar(false);
+            }
+        }
+
+        function toggleCalendar() {
+            let isCalendarOn = localStorage.getItem('calendar') === 'true';
+            isCalendarOn = !isCalendarOn;
+            localStorage.setItem('calendar', isCalendarOn);
+            document.getElementById('calendarButton').textContent = isCalendarOn ? 'Calendar ON' : 'Calendar OFF';
+            if (isCalendarOn) {
+                setSubmit(false);
+            }
+        }
+
+        function setSubmit(value) {
+            localStorage.setItem('isEnabled', value);
+            document.getElementById('submitButton').textContent = value ? 'SUBMIT ON' : 'SUBMIT OFF';
+        }
+
+        function setCalendar(value) {
+            localStorage.setItem('calendar', value);
+            document.getElementById('calendarButton').textContent = value ? 'Calendar ON' : 'Calendar OFF';
+        }
+
+        function toggleCategory() {
+            const categories = ['Normal', 'Premium', 'Prime Time'];
+            let currentCategory = localStorage.getItem('category') || 'Normal';
+            let currentIndex = categories.indexOf(currentCategory);
+            currentIndex = (currentIndex + 1) % categories.length;
+            localStorage.setItem('category', categories[currentIndex]);
+            document.getElementById('categoryButton').textContent = categories[currentIndex];
+        }
+
+        function toggleCaptchaAutoSolve() {
+            let isCaptchaAutoSolveOn = localStorage.getItem('captchaautosolve') === 'true';
+            isCaptchaAutoSolveOn = !isCaptchaAutoSolveOn;
+            localStorage.setItem('captchaautosolve', isCaptchaAutoSolveOn);
+            document.getElementById('captchaAutoSolveButton').textContent = isCaptchaAutoSolveOn ? 'Captcha Auto Solve ON' : 'Captcha Auto Solve OFF';
+        }
+
+        function toggleAutoLogin() {
+            let isAutoLoginOn = localStorage.getItem('autoLogin') === 'true';
+            isAutoLoginOn = !isAutoLoginOn;
+            localStorage.setItem('autoLogin', isAutoLoginOn);
+            document.getElementById('autoLoginButton').textContent = isAutoLoginOn ? 'Auto Login ON' : 'Auto Login OFF';
+        }
+    }
+
+    function restoreButtonStates() {
+        const isEnabled = localStorage.getItem('isEnabled') === 'true';
+        document.getElementById('submitButton').textContent = isEnabled ? 'SUBMIT ON' : 'SUBMIT OFF';
+
+        const isCalendarOn = localStorage.getItem('calendar') === 'true';
+        document.getElementById('calendarButton').textContent = isCalendarOn ? 'Calendar ON' : 'Calendar OFF';
+
+        const currentCategory = localStorage.getItem('category') || 'Normal';
+        document.getElementById('categoryButton').textContent = currentCategory;
+
+        const isCaptchaAutoSolveOn = localStorage.getItem('captchaautosolve') === 'true';
+        document.getElementById('captchaAutoSolveButton').textContent = isCaptchaAutoSolveOn ? 'Captcha Auto Solve ON' : 'Captcha Auto Solve OFF';
+
+        const isAutoLoginOn = localStorage.getItem('autoLogin') === 'true';
+        document.getElementById('autoLoginButton').textContent = isAutoLoginOn ? 'Auto Login ON' : 'Auto Login OFF';
     }
 
     // Initialize script
