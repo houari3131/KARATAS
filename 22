@@ -63,6 +63,11 @@ $(`.k-calendar-view a[data-value="${libre[date]}"]`).click(); }
  SlotChoose();
          }, 200);
 
+    setTimeout(() => {
+ $('#btnSubmit').click()
+
+}, 400);
+
 
  });
 });
