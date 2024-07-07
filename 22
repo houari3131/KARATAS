@@ -117,7 +117,7 @@ $('#btnSubmit').click()
        console.log('You got a Date');
       
     }
-    }, 4500) 
+    }, 3000) 
     }
      
        setTimeout(() => {     
@@ -139,4 +139,4 @@ $('#btnSubmit').click()
        console.log('You got a Date');
       
     }
-    }, 6000) 
+    }, 5000) 
