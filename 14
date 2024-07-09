@@ -506,17 +506,7 @@ $.ajax({
         }
     }
     
-    function toggleRefresh(button) {
-        if (button.textContent === "Refresh off") {
-            button.textContent = "Refresh on";
-            button.classList.add("on");
-            datevide = true;
-        } else {
-            button.textContent = "Refresh off";
-            button.classList.remove("on");
-            datevide = false;
-        }
-    }
+  
 
     function createRefreshTimeInput() {
         var container = document.createElement("div");
@@ -555,19 +545,8 @@ $.ajax({
     createRefreshTimeInput();
         
         
-    function startRefreshFunction() {
-        // الكود الخاص بالدالة التي تريد تنفيذها عندما يكون الزر في حالة "on"
-        console.log("Refresh function started");
-        refreshInterval = setInterval(() => {
-            console.log("Refreshing...");
-            // أضف هنا الكود الذي تريد تنفيذه بشكل دوري
-        }, 1000); // تنفيذ الكود كل ثانية (يمكنك تغيير القيمة حسب الحاجة)
-    }
-    function stopRefreshFunction() {
-        // الكود الخاص بإيقاف الدالة عندما يكون الزر في حالة "off"
-        console.log("Refresh function stopped");
-        clearInterval(refreshInterval);
-    }
+
+ 
     function GetForm() {
         // الكود الخاص بالزر السادس
       if(document.querySelector("#progress-percent").textContent ==='25%' || document.querySelector("#progress-percent").textContent ==='50%')
