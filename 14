@@ -1,4 +1,7 @@
 
+
+
+
 var CasaNatArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "2024-07-05"],
     CasaShengenArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04"],
     RabatArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04"],
@@ -506,7 +509,7 @@ $.ajax({
         }
     }
     
-  
+   
 
     function createRefreshTimeInput() {
         var container = document.createElement("div");
@@ -545,8 +548,7 @@ $.ajax({
     createRefreshTimeInput();
         
         
-
- 
+  
     function GetForm() {
         // الكود الخاص بالزر السادس
       if(document.querySelector("#progress-percent").textContent ==='25%' || document.querySelector("#progress-percent").textContent ==='50%')
