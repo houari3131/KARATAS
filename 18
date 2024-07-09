@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name         localStorage For Entry
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://www.blsspainmorocco.net/*
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        none
+// ==/UserScript==
+
+
 
 
 if(localStorage.familyOfMembers == 1){
@@ -46,3 +58,57 @@ if(localStorage.visatype== 'Casa 3'){
 
 
 
+
+
+
+
+//////visasubetype
+if(localStorage.visaSubtype == 'Schengen Visa'){
+   localStorage.VisaSubTypeId ='ab828ce6-d1b3-46e0-8e91-8ffa27d2b6d7' //  Schengen Visa
+}
+if(localStorage.visaSubtype == 'Student Visa'){
+   localStorage.VisaSubTypeId ='ccd817eb-c023-4eff-aac9-f6c394e7427f' //  Student Visa
+}
+if(localStorage.visaSubtype == 'Family Reunification Visa'){
+   localStorage.VisaSubTypeId ='fbf41aee-a425-46fa-a0a7-2b9845ac8b0c' //  Family Reunification Visa
+}
+if(localStorage.visaSubtype == 'National Visa'){
+   localStorage.VisaSubTypeId ='ec498f00-5a86-4b2e-bca7-7a6b5b8b1d52' //  National Visa
+
+}
+if(localStorage.visaSubtype == 'Work Visa'){
+   localStorage.VisaSubTypeId ='0c6445de-03f8-4a52-92ae-a3f647e6644c' //  long stay
+}
+if(localStorage.visaSubtype == 'Casa 1'){
+   localStorage.VisaSubTypeId ='ef92eec6-db32-437b-9291-0ee746b5a03b' //  Casa 1
+}
+if(localStorage.visaSubtype == 'Casa 2'){
+   localStorage.VisaSubTypeId ='4792c812-5088-4044-b13b-6abb4a0fa5bf' //  Casa 2
+}
+if(localStorage.visaSubtype == 'Casa 3'){
+   localStorage.VisaSubTypeId ='8b6f8ee2-d516-49fe-be38-226a1bd6d97e' //  Casa 3
+}
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////// location 
+if(localStorage.location =='Casablanca' && localStorage.visaSubtype == 'National Visa'){
+ localStorage.LocationId = '60d2df036755e8de168d8db7&missionId=beae2d19-89a9-46e7-9415-5422adafe619'
+}
+if(localStorage.location =='Rabat'){
+ localStorage.LocationId = '8d780684-1524-4bda-b138-7c71a8591944&missionId='
+}
+if(localStorage.location =='Tetouan'){
+ localStorage.LocationId = '889689b5-1099-4795-ac19-c9263da23252&missionId='
+}
+if(localStorage.location =='Agadir'){
+ localStorage.LocationId = '138660df-f645-488f-8458-97186b17c7f9&missionId='
+}
+if(localStorage.location =='Nador'){
+ localStorage.LocationId = '0566245a-7ba1-4b5a-b03b-3dd33e051f46&missionId='
+}
+if(localStorage.location =='Tangier'){
+ localStorage.LocationId = '8457a52e-98be-4860-88fc-2ce11b80a75e&missionId='
+}
