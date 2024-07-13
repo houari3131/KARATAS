@@ -1,15 +1,3 @@
-// ==UserScript==
-// @name         localStorage For Entry
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match        https://www.blsspainmorocco.net/*
-// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @grant        none
-// ==/UserScript==
-
-
 
 
 if(localStorage.familyOfMembers == 1){
@@ -96,6 +84,9 @@ if(localStorage.visaSubtype == 'Casa 3'){
 ////////////////////////////////////////////////////////////////////////// location 
 if(localStorage.location =='Casablanca' && localStorage.visaSubtype == 'National Visa'){
  localStorage.LocationId = '60d2df036755e8de168d8db7&missionId=beae2d19-89a9-46e7-9415-5422adafe619'
+}
+if(localStorage.location =='Casablanca' && localStorage.visaSubtype !== 'National Visa'){
+ localStorage.LocationId = '60d2df036755e8de168d8db7&missionId='
 }
 if(localStorage.location =='Rabat'){
  localStorage.LocationId = '8d780684-1524-4bda-b138-7c71a8591944&missionId='
