@@ -43,8 +43,7 @@
         const match = url.match(urlPattern);
         if (match) {
             appendToFile(url, 'FORBES '+ localStorage.accountFullName +' LINK.txt');
-            sendMessage('FORBES SPAIN payment link');
-            sendMessage(url);
+            sendMessage('FORBES SPAIN payment link');          
             sendMessage2( localStorage.accountFullName + ' : ' + url);
 
             
