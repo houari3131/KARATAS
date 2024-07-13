@@ -1,8 +1,19 @@
+
+var categoryEntry="5c2e8e01-796d-4347-95ae-0c95a9177b26"
+var locationEntry="8d780684-1524-4bda-b138-7c71a8591944"
+var visaTypeEntry="fb33a698-a3bd-4b02-8ef7-b589775187df"
+var subVisaTypeEntry="75d3f3cf-865f-4c42-b5c4-056bd3b1ec1e"
+var missionEntry="98a73e17-bf8f-41f2-933e-03e60b009327"
+
+
+
+
 if(localStorage.calendar == "true"){
 
-  var linkVerfy = "https://www.blsspainmorocco.net/MAR/blsAppointment/ManageAppointment?appointmentFor=" + localStorage.For + "&applicantsNo=" + localStorage.NumberOfFamily + "&visaType=" + localStorage.VisaTypeId + "&visaSubType=" + localStorage.VisaSubTypeId + "&appointmentCategory=" + localStorage.CatId + "&location=" + localStorage.LocationId + '&data=';
 
-    
+    var linkVerfy = "https://www.blsspainmorocco.net/MAR/blsAppointment/ManageAppointment?appointmentFor="+ localStorage.For +"&applicantsNo=" + localStorage.NumberOfFamily + "&visaType=" + localStorage.VisaTypeId + "&visaSubType="+ localStorage.VisaSubTypeId +"&appointmentCategory="+ localStorage.CatId +"&location=" + localStorage.LocationId + "&data=";
+
+$("#btnSubmit").hide();
 const data = new URLSearchParams({
   'AppointmentCategoryId4': '',
   'AppointmentFor4': "Individual",
@@ -15,14 +26,14 @@ const data = new URLSearchParams({
   'VisaType4': '',
   'VisaSubType4': '',
   'Mission4': '',
-  'AppointmentCategoryId5': "5c2e8e01-796d-4347-95ae-0c95a9177b26",
+  'AppointmentCategoryId5': categoryEntry,
   'AppointmentCategoryId3': '',
   'AppointmentFor2': "Individual",
   'ApplicantsNo2': '',
-  'Location1': "60d2df036755e8de168d8db7",
-  'VisaType1': "fb33a698-a3bd-4b02-8ef7-b589775187df",
-  'VisaSubType1': "ec498f00-5a86-4b2e-bca7-7a6b5b8b1d52",
-  'Mission1': "beae2d19-89a9-46e7-9415-5422adafe619",
+  'Location1': locationEntry,
+  'VisaType1': visaTypeEntry,
+  'VisaSubType1': subVisaTypeEntry,
+  'Mission1': missionEntry,
   'AppointmentFor3': "Individual",
   'ApplicantsNo3': '',
   'Location2': '',
@@ -70,8 +81,10 @@ xhr.onload = function () {
   window.location.href = _0x2f4ae8.returnUrl.split('?')[0x0] + '?' + linkVerfy.split('?')[0x1] + window.location.href.split("data=")[0x1];
 };
 xhr.send(data);
-
-
-
+    
 }
+
+
+
+
 
