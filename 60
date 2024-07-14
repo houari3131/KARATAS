@@ -1,6 +1,6 @@
 
 
-if(localSorage.calendar == 'true'){
+if(localStorage.calendar == 'true'){
 
     var linkVerfy = "https://www.blsspainmorocco.net/MAR/blsAppointment/ManageAppointment?appointmentFor="+ localStorage.For +"&applicantsNo=" + localStorage.NumberOfFamily + "&visaType=" + localStorage.VisaTypeId + "&visaSubType="+ localStorage.VisaSubTypeId +"&appointmentCategory="+ localStorage.CatId +"&location=" + localStorage.LocationId + "&data=";
 
