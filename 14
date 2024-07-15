@@ -283,11 +283,25 @@ var AgadirArray = getStoredDates('Agadir');
         $.each(allowedListDate, function (index, value) {
             arrayListDate.push(value);
        });
+       
+       if(false){
        //-------------------------------------------
        var randomList = arrayListDate[Math.floor(arrayListDate.length  * Math.random())];
        document.querySelector("#AppointmentDate"+d).value=randomList;
        appDateList.value(randomList);
-       OnAppointmentdateChange();
+       OnAppointmentdateChange(); }else{ 
+          
+            let CurrentDate = localStorage.getItem('CurrentDate') || arrayListDate[0];
+            let CurrentIndex = arrayListDate.indexOf(CurrentDate);
+            CurrentIndex = (CurrentIndex + 1) % arrayListDate.length;
+            localStorage.setItem('CurrentDate', arrayListDate[CurrentIndex]);
+            var SuccessiveListe = arrayListDate[CurrentIndex]
+             document.querySelector("#AppointmentDate"+d).value=SuccessiveListe;
+            appDateList.value(SuccessiveListe);
+           OnAppointmentdateChange();  
+         
+       
+       }
    }
    else
    {
