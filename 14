@@ -225,6 +225,16 @@ function LoadDates(d, t)
 //=======================================================
 function LoadBlockDates(d, t)
 {
+
+
+var CasaNatArray = getStoredDates('CasaNat');
+var CasaShengenArray = getStoredDates('CasaShengen');
+var RabatArray = getStoredDates('Rabat');
+var TetouanArray = getStoredDates('Tetouan');
+var NadroArray = getStoredDates('Nador');
+var TangierArray = getStoredDates('Tangier');
+var AgadirArray = getStoredDates('Agadir');
+
   var  allowedListDate=[];
  if ($("#LocationId").val() == "889689b5-1099-4795-ac19-c9263da23252") {
         allowedListDate = TetouanArray;
@@ -712,13 +722,6 @@ $.ajax({
 
     function refreshFunction() {
 
-var CasaNatArray = getStoredDates('CasaNat');
-var CasaShengenArray = getStoredDates('CasaShengen');
-var RabatArray = getStoredDates('Rabat');
-var TetouanArray = getStoredDates('Tetouan');
-var NadroArray = getStoredDates('Nador');
-var TangierArray = getStoredDates('Tangier');
-var AgadirArray = getStoredDates('Agadir');
 
         var refrechedTime = getRefreshedTime();
          if (document.querySelector("#progress-percent").textContent === '0%' && $("#appointmentDetailsDiv").is(":visible") == true) {
