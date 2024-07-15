@@ -340,4 +340,4 @@
         datePickerMenu.appendChild(buttonContainer);
     }
 
-]
+}
