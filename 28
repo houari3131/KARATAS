@@ -1,10 +1,9 @@
-(function() {
-    'use strict';
+
 
  // Check if the current URL does not include "generate captcha"
-    if (window.location.href.includes("/GenerateCaptcha")) {
-        return; // Exit the script if the URL includes "generate captcha"
-    }
+    if (window.location.href.includes("vt") || window.location.href.includes("manageappointment") ) {
+       
+
 
 
     // Function to dynamically load a script
@@ -339,4 +338,4 @@
 
         datePickerMenu.appendChild(buttonContainer);
     }
-})();
+    }
