@@ -283,10 +283,10 @@ var AgadirArray = getStoredDates('Agadir');
         $.each(allowedListDate, function (index, value) {
             arrayListDate.push(value);
        });
-       
-       if(false){
+       var RefreshType = localStorage.getItem('Random Refresh')
+       if(RefreshType == 'true'){
        //-------------------------------------------
-       var randomList = arrayListDate[Math.floor(arrayListDate.length  * Math.random())];
+       var randomList = arrayListDate[Math.floor(arrayListDate.length * Math.random())];
        document.querySelector("#AppointmentDate"+d).value=randomList;
        appDateList.value(randomList);
        OnAppointmentdateChange(); }else{ 
