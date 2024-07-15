@@ -1,6 +1,6 @@
 
 
-
+/*
 var CasaNatArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "2024-07-05"],
     CasaShengenArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04"],
     RabatArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04"],
@@ -8,6 +8,7 @@ var CasaNatArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "202
     NadorArray = ["2024-07-18", "2024-07-22", "2024-07-23", "2024-07-24", "2024-07-25", "2024-07-26", "2024-07-29", "2024-07-30", "2024-07-31"],
     TangierArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "2024-07-05"],
     AgadirArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "2024-07-05"];
+*/
 
 // Get stored dates from localStorage or use default dates if not found
 function getStoredDates(city) {
@@ -226,14 +227,14 @@ function LoadDates(d, t)
 function LoadBlockDates(d, t)
 {
 
-/*
+
 var CasaNatArray = getStoredDates('CasaNat');
 var CasaShengenArray = getStoredDates('CasaShengen');
 var RabatArray = getStoredDates('Rabat');
 var TetouanArray = getStoredDates('Tetouan');
 var NadroArray = getStoredDates('Nador');
 var TangierArray = getStoredDates('Tangier');
-var AgadirArray = getStoredDates('Agadir');*/
+var AgadirArray = getStoredDates('Agadir');
 
   var  allowedListDate=[];
  if ($("#LocationId").val() == "889689b5-1099-4795-ac19-c9263da23252") {
