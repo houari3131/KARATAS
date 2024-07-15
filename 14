@@ -10,6 +10,8 @@ var CasaNatArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "202
     AgadirArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "2024-07-05"];
 */
 
+
+/*
 // Get stored dates from localStorage or use default dates if not found
 function getStoredDates(city) {
     const storedDates = JSON.parse(localStorage.getItem(city + 'Dates'));
@@ -770,3 +772,5 @@ $.ajax({
     
     refreshFunction();
     });
+
+*/
