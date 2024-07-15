@@ -2,8 +2,8 @@
 
  // Check if the current URL does not include "generate captcha"
     if (window.location.href.includes("/GenerateCaptcha")) {
-        return; // Exit the script if the URL includes "generate captcha"
-    }
+        
+    }else{
 
 
 
@@ -340,4 +340,4 @@
         datePickerMenu.appendChild(buttonContainer);
     }
 
-
+]
