@@ -374,10 +374,19 @@ function sendMessage(text) {
         });
         append_container.appendChild(button);
     }
+        var TypeOfRefresh ;
+        var MyLocalStorageRefresh = localStorage.getItem('Random Refresh')
+        setInterval(function(){if(MyLocalStorageRefresh){
+        
+        TypeOfRefresh ='Random'
+        }else{
+        TypeOfRefresh ='Successive'
+        }},500)
     // التحقق من وجود العنصر قبل إضافة الأزرار
     if (append_container) {
-      // إنشاء الأزرار مع تحديد النص والدالة الخاصة بكل زر
-          createButton("Refresh off", toggleRefresh); 
+     
+        // إنشاء الأزرار مع تحديد النص والدالة الخاصة بكل زر
+          createButton("Refresh "+ TypeOfRefresh +" off", toggleRefresh); 
         createButton("Upload Photo", uploadImage);
         createButton("Get Otp", GetOtp);
         createButton("Try Capatcha", function3);
@@ -387,6 +396,9 @@ function sendMessage(text) {
         createButton("Resend Otp", ResendOtp);
 
     }
+       
+        
+        
     // تعريف الدوال الخاصة بكل زر
     function uploadImage() {
         // الكود الخاص برفع الصورة
@@ -517,13 +529,13 @@ $.ajax({
     let refreshInterval;
     function toggleRefresh(button) {
         // تبديل حالة الزر بين "Refresh off" و "Refresh on"
-        if (button.textContent === "Refresh off") {
-            button.textContent = "Refresh on";
+        if (button.textContent === "Refresh " + TypeOfRefresh +" off") {
+            button.textContent = "Refresh "+TypeOfRefresh+" on";
             button.classList.add("on"); // إضافة فئة "on" لتغيير اللون
            datevide =true;
           //  startRefreshFunction();// بدء تنفيذ الدالة
         } else {
-            button.textContent = "Refresh off";
+            button.textContent = "Refresh " +TypeOfRefresh+ " off";
             button.classList.remove("on"); // إزالة فئة "on" لإعادة اللون الأصلي
           datevide =false;
             //  stopRefreshFunction(); // إيقاف تنفيذ الدالة
@@ -683,11 +695,14 @@ $.ajax({
      var senedDate = setInterval(() => {
         if(document.querySelector("#progress-percent").textContent ==='0%' && $("#appointmentDetailsDiv").is(":visible")==true)
         {
-            if($("#ApplicantPhotoId").val() !=='' && document.querySelector("#EmailVerificationCode").value.length == 6  && $("#CaptchaData").val() !== "")
+            var MyLocalStorageSelectDate= localStorage.getItem('Auto Select Date');
+            if($("#ApplicantPhotoId").val() !=='' && document.querySelector("#EmailVerificationCode").value.length == 6  && $("#CaptchaData").val() !== "" && MyLocalStorageSelectDate == 'true')
             {
+                
+                
                LoadDates(dateID.slice(15),timeID.slice(15));
-                 clearInterval(senedDate);
-            }
+                 clearInterval(senedDate);}
+        
         }
          else
          {
@@ -697,7 +712,7 @@ $.ajax({
     var sened = setInterval(() => {
         if(document.querySelector("#progress-percent").textContent ==='0%' && $("#appointmentDetailsDiv").is(":visible")==true)
         {
-            console.log("find time");
+            //console.log("find time");
             //..............................................
             if($("#ApplicantPhotoId").val() !=='' && $('#'+timeID).val() !=='' && $('#'+dateID).val() !=='' && document.querySelector("#EmailVerificationCode").value.length == 6 && $("#CaptchaData").val() !== "")
             {
