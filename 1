@@ -307,9 +307,11 @@
 
     // Update options in the Supvist field based on the selected Vist
     function updateSupvistOptions(client = {}) {
+        const ctySelect = document.querySelector('select[name="cty"]');
         const vistSelect = document.querySelector('select[name="vist"]');
         const supvistSelect = document.querySelector('select[name="supvist"]');
         const selectedVist = vistSelect.value;
+        const selectedCty = ctySelect.value;
 
         while (supvistSelect.firstChild) {
             supvistSelect.removeChild(supvistSelect.firstChild);
@@ -318,8 +320,10 @@
       let options = [];
         if (selectedVist === 'Schengen Visa') {
             options = ['Schengen Visa'];
-        } else if (selectedVist === 'National Visa') {
+        } else if (selectedVist === 'National Visa' && selectedCty === 'Casablanca' ) {
             options = ['National Visa', 'Work Visa', 'Student Visa', 'Family Reunification Visa'];
+        } else if(selectedVist === 'National Visa' && selectedCty === 'Rabat'){
+            options = ['Students - Language/selectivity', 'Students - Non-tertiary studies', 'Students - Graduate studies', 'Student - Others'];
         } else if (selectedVist === 'Casa 1') {
             options = ['Casa 1'];
         } else if (selectedVist === 'Casa 2') {
