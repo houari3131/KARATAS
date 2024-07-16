@@ -64,6 +64,23 @@ if(localStorage.visaSubtype == 'National Visa'){
    localStorage.VisaSubTypeId ='ec498f00-5a86-4b2e-bca7-7a6b5b8b1d52' //  National Visa
 
 }
+if(localStorage.visaSubtype == 'Students - Language/selectivity'){
+   localStorage.VisaSubTypeId ='c7b597ed-983d-43d1-bac9-11ec85e6a821' //  National Visa
+
+}
+if(localStorage.visaSubtype == 'Students - Non-tertiary studies'){
+   localStorage.VisaSubTypeId ='75d3f3cf-865f-4c42-b5c4-056bd3b1ec1e' //  National Visa
+
+}
+if(localStorage.visaSubtype == 'Students - Graduate studies'){
+   localStorage.VisaSubTypeId ='5f58d00d-d807-49a8-8f2d-ce4c60d96182' //  National Visa
+
+}
+if(localStorage.visaSubtype == 'Student - Others'){
+   localStorage.VisaSubTypeId ='6d3bf398-debe-4d63-914e-fbadf7d4882e' //  National Visa
+
+}
+
 if(localStorage.visaSubtype == 'Work Visa'){
    localStorage.VisaSubTypeId ='0c6445de-03f8-4a52-92ae-a3f647e6644c' //  long stay
 }
