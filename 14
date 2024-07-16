@@ -10,8 +10,6 @@ var CasaNatArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "202
     AgadirArray = ["2024-07-01", "2024-07-02", "2024-07-03", "2024-07-04", "2024-07-05"];
 */
 
-
-/*
 // Get stored dates from localStorage or use default dates if not found
 function getStoredDates(city) {
     const storedDates = JSON.parse(localStorage.getItem(city + 'Dates'));
@@ -376,14 +374,26 @@ function sendMessage(text) {
         });
         append_container.appendChild(button);
     }
-        var TypeOfRefresh ;
-        var MyLocalStorageRefresh = localStorage.getItem('Random Refresh')
-        setInterval(function(){if(MyLocalStorageRefresh){
+       var TypeOfRefresh;
         
-        TypeOfRefresh ='Random'
-        }else{
-        TypeOfRefresh ='Successive'
-        }},500)
+        var MyLocalStorageRefresh2 = localStorage.getItem('Random Refresh');
+    
+    if (MyLocalStorageRefresh2 == 'true') {
+        TypeOfRefresh = 'Random';
+    } else {
+        TypeOfRefresh = 'Successive';
+    }
+
+setInterval(function() {
+    var MyLocalStorageRefresh = localStorage.getItem('Random Refresh');
+    
+    if (MyLocalStorageRefresh == 'true') {
+        TypeOfRefresh = 'Random';
+    } else {
+        TypeOfRefresh = 'Successive';
+    }
+}, 500);
+
     // التحقق من وجود العنصر قبل إضافة الأزرار
     if (append_container) {
      
@@ -531,13 +541,13 @@ $.ajax({
     let refreshInterval;
     function toggleRefresh(button) {
         // تبديل حالة الزر بين "Refresh off" و "Refresh on"
-        if (button.textContent === "Refresh " + TypeOfRefresh +" off") {
-            button.textContent = "Refresh "+TypeOfRefresh+" on";
+        if (button.textContent === "Refresh " + TypeOfRefresh +" Off") {
+            button.textContent = "Refresh "+TypeOfRefresh+" On";
             button.classList.add("on"); // إضافة فئة "on" لتغيير اللون
            datevide =true;
           //  startRefreshFunction();// بدء تنفيذ الدالة
         } else {
-            button.textContent = "Refresh " +TypeOfRefresh+ " off";
+            button.textContent = "Refresh " +TypeOfRefresh+ " Off";
             button.classList.remove("on"); // إزالة فئة "on" لإعادة اللون الأصلي
           datevide =false;
             //  stopRefreshFunction(); // إيقاف تنفيذ الدالة
@@ -772,5 +782,3 @@ $.ajax({
     
     refreshFunction();
     });
-
-*/
