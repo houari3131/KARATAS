@@ -232,7 +232,7 @@ var CasaNatArray = getStoredDates('CasaNat');
 var CasaShengenArray = getStoredDates('CasaShengen');
 var RabatArray = getStoredDates('Rabat');
 var TetouanArray = getStoredDates('Tetouan');
-var NadroArray = getStoredDates('Nador');
+var NadorArray = getStoredDates('Nador');
 var TangierArray = getStoredDates('Tangier');
 var AgadirArray = getStoredDates('Agadir');
 
