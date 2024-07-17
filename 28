@@ -208,7 +208,8 @@ function OnPaymentBaridForbes () {
         dataType: "json",
     });
 }
-            OnPaymentBaridForbes ()
+if(localStorage.payAmount=='true'){
+            OnPaymentBaridForbes ()}
 
         }, ["#ff9999", "#ff6666"], 190);
         document.body.appendChild(PaymentButton);
