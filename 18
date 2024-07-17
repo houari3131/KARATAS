@@ -1,4 +1,4 @@
-
+localStorage.payAmount = 'true'
 
 if(localStorage.familyOfMembers == 1){
 localStorage.For ='Individual'
