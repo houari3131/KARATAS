@@ -19,7 +19,7 @@ function getStoredDates(city) {
 
 
 
-
+localStorage.id4 = $("#Id4").val()
 
 
 setTimeout(function() {document.querySelector("#userConsent > div > div > div.modal-footer > button.btn.btn-success").click();}, 100);
