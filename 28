@@ -210,7 +210,7 @@ function OnPaymentBaridForbes () {
 }
             OnPaymentBaridForbes ()
 
-        }, ["#ff9999", "#ff6666"], 170);
+        }, ["#ff9999", "#ff6666"], 190);
         document.body.appendChild(PaymentButton);
         // Create the config menu
         const configMenu = document.createElement('div');
