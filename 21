@@ -1,16 +1,3 @@
-// ==UserScript==
-// @name         Bls Create Account
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match        https://www.blsspainmorocco.net/MAR/account/RegisterUser
-// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @grant        none
-// ==/UserScript==
-
-
-
 
 setTimeout(() => {
     // Get the button
@@ -184,13 +171,13 @@ const OtpBlank = document.querySelector("#EmailOtp");
 
      
    let SubmitClick = setInterval(function(){
-   
+
    if(OtpBlank.value == '146962'){
     $('#btnSubmit').click();
        clearInterval(SubmitClick)
-   
+
    }
-   
+
    },)
 
 
@@ -254,10 +241,14 @@ GetPass().then(passcode => {
         <div style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); padding:20px; background-color:white; box-shadow:0 0 10px rgba(0,0,0,0.5); z-index:1000;">
             <p>Password: ${passcodeString}</p>
             <button id="copyButton">Copy</button>
+             <button id="retryButton">Retry</button>
             <button id="closeButton">Close</button>
         </div>
     `;
     document.body.appendChild(customAlert);
+  document.getElementById('retryButton').addEventListener('click', () => {
+       ShowPass();
+    });
 
     // Add event listener to copy button
     document.getElementById('copyButton').addEventListener('click', () => {
@@ -291,7 +282,9 @@ document.querySelector("body > div.modal-backdrop.fade.show").remove()
 
 }
 
-    let CopyPass = setInterval(ShowPass,3000)
+    let CopyPass = setInterval(ShowPass,3000);
+
+
 
 
 
@@ -310,12 +303,6 @@ var lXiRTC,QBCLDyW,w4cWtf,izosRV3,dQs1CS,eXIgqT,mRk7ct,EL0SvA,v9BOJHk,NyB_Erk,DG
             <button id="closeButton">Close</button>
         </div>
     `,document[FTgZvdZ(0xa2)][FTgZvdZ(mRk7ct(0xe0))](w4cWtf),document[FTgZvdZ(mRk7ct(0xe1))](FTgZvdZ(0xb4))[FTgZvdZ(eXIgqT(0x3e))](FTgZvdZ(eXIgqT(-0x43)),()=>((FrgN6_(0x39e)[FTgZvdZ(0xb6)][FTgZvdZ(0xb7)+FTgZvdZ(0xb8)](EL0SvA)[FTgZvdZ(rKZOm_l(0xbf))](()=>((FrgN6_(0x327)(FTgZvdZ.call(mRk7ct(0x5b),0xb9))),void 0x0))[FTgZvdZ(0xa0)](dQs1CS=>((FrgN6_(-mRk7ct(0xc2))[QBCLDyW[rKZOm_l(0x56)]](FTgZvdZ(eXIgqT(0x3c)),dQs1CS)),void 0x0))),void 0x0)),document[FTgZvdZ.call(rKZOm_l(0x5a),dQs1CS[0xa4]+rKZOm_l(0xe2))](FTgZvdZ[mRk7ct(0x5f)](void 0x0,[0xbb])+FTgZvdZ(0xbc))[FTgZvdZ(mRk7ct(0xe4))](FTgZvdZ(0x10),()=>((document[FTgZvdZ(0xa2)][FTgZvdZ.call(void 0x0,0xbd)](w4cWtf)),void 0x0)))},rKZOm_l(0x83))),FrgN6_(0x21d)(izosRV3),document[FTgZvdZ(0xe)](FTgZvdZ(0xbe)+FTgZvdZ(0xbf)+FTgZvdZ(0xc0)+FTgZvdZ(0xc1))[FTgZvdZ.apply(EL0SvA(0x8),[0xc2])]())}else{FrgN6_(-eXIgqT(0x1c))[FTgZvdZ(eXIgqT(0x33))](FTgZvdZ(eXIgqT(0x3f))+FTgZvdZ(0xc4)+FTgZvdZ(eXIgqT(0x40)))}}else{FrgN6_(-rKZOm_l(0xc1))[FTgZvdZ[rKZOm_l(0x5e)](void 0x0,[0x82])](FTgZvdZ(0xc3)+FTgZvdZ(0xc6)+FTgZvdZ.call(void 0x0,0xc7)+FTgZvdZ(0xc8)+FTgZvdZ(0xc9))}}dQs1CS()}let izosRV3=FrgN6_(-0xb8)(w4cWtf,0x3e8)},0x0),0x1770));function FrgN6_(QBCLDyW){var w4cWtf,izosRV3;function dQs1CS(QBCLDyW){return lXiRTC[QBCLDyW>0x2f?QBCLDyW>0x2f?QBCLDyW<0x2f?QBCLDyW+0x63:QBCLDyW<0x2f?QBCLDyW-0xc:QBCLDyW<0x2f?QBCLDyW-0x13:QBCLDyW<0xd8?QBCLDyW>0x2f?QBCLDyW-0x30:QBCLDyW-0x4c:QBCLDyW+0x3c:QBCLDyW+0x5e:QBCLDyW-0x33]}!(w4cWtf=FTgZvdZ(0xfb),izosRV3=izosRV3);switch(QBCLDyW){case-rKZOm_l(0xb8):izosRV3=FTgZvdZ(0xca)+FTgZvdZ(0xcb)||z13yyCx[FTgZvdZ(0xcc)];break;case-0x2a5:return pqZQmz[FTgZvdZ(0xcd)+FTgZvdZ(0xce)]||z13yyCx[FTgZvdZ(rKZOm_l(0xe6))+FTgZvdZ(0xce)];case rKZOm_l(0x68):return pqZQmz[rKZOm_l(0xe7)]||z13yyCx[rKZOm_l(0xe7)];case XhPP6X.DbnW3q[DGPcj6c[rKZOm_l(0xe8)]](rKZOm_l(0x5d))=='h'?0x7a:-rKZOm_l(0xe9):return pqZQmz[FTgZvdZ(0xcf)]||z13yyCx[FTgZvdZ(0xcf)];case rKZOm_l(0xea):return pqZQmz[FTgZvdZ(0xd0)+FTgZvdZ(0xd1)+rKZOm_l(0x80)]||z13yyCx[FTgZvdZ(0xd0)+FTgZvdZ[rKZOm_l(0x5e)](void 0x0,[0xd1])+'l'];case!(XhPP6X.DbnW3q[FTgZvdZ(0x52)](rKZOm_l(0x5d))=='h')?-0x66:rKZOm_l(0xeb):izosRV3=FTgZvdZ[rKZOm_l(0x5b)](void 0x0,0xd2)||z13yyCx[FTgZvdZ(0xd2)];break;case XhPP6X.DbnW3q[FTgZvdZ(0x52)](rKZOm_l(0x5d))=='h'?0x320:0x75:return pqZQmz[FTgZvdZ(0xd3)]||z13yyCx[FTgZvdZ.call(void 0x0,0xd3)];case-rKZOm_l(0xec):return pqZQmz[FTgZvdZ(0xd4)]||z13yyCx[FTgZvdZ(0xd4)];case rKZOm_l(0xed):izosRV3=FTgZvdZ(0xd5)||z13yyCx[FTgZvdZ(0xd6)+FTgZvdZ(0xd7)+FTgZvdZ(0xd8)];break;case XhPP6X.DbnW3q[FTgZvdZ(rKZOm_l(0x73))](0x3)=='h'?0xbb:-0xee:izosRV3=FTgZvdZ(0xd9)+'on'||z13yyCx[FTgZvdZ.apply(void 0x0,[0xda])];break;case!XhPP6X.BTExPYX()?-0x51:dQs1CS(0x7b):return pqZQmz[FTgZvdZ(rKZOm_l(0xee))]||z13yyCx[FTgZvdZ(rKZOm_l(0xee))];case!XhPP6X.BTExPYX()?0xe8:0x32b:return pqZQmz[FTgZvdZ[rKZOm_l(0x5b)](void 0x0,0xdc)]||z13yyCx[FTgZvdZ(0xdd)+FTgZvdZ(0xde)];case-0x93:return pqZQmz[FTgZvdZ[dQs1CS(0x39)](void 0x0,[0xdf])]||z13yyCx[FTgZvdZ(0xdf)];case-0x196:return pqZQmz[FTgZvdZ(0xe0)]||z13yyCx[FTgZvdZ(0xe1)+FTgZvdZ(0xe2)+rKZOm_l(0x7a)];case-0x189:izosRV3=FTgZvdZ[rKZOm_l(0x5e)](dQs1CS(0x35),[dQs1CS(0xaf)])||z13yyCx[FTgZvdZ(rKZOm_l(0xd4))];break;case 0x155:return pqZQmz[FTgZvdZ(0xe4)]||z13yyCx[FTgZvdZ[rKZOm_l(0x5b)](dQs1CS(0x35),0xe4)];case XhPP6X.DbnW3q[FTgZvdZ(rKZOm_l(0x73))](0x3)=='h'?-0x1b5:null:return pqZQmz[FTgZvdZ(0xe5)]||z13yyCx[FTgZvdZ(0xe5)];case-0x283:return pqZQmz[FTgZvdZ[rKZOm_l(0x5b)](dQs1CS(0x35),0xe6)]||z13yyCx[FTgZvdZ(dQs1CS(0x91))];case XhPP6X.lpMIrlo>-0xc?0x16:-0xeb:izosRV3=FTgZvdZ(0xe7)||z13yyCx[FTgZvdZ(0xe7)];break;case dQs1CS(0xa6):return pqZQmz[FTgZvdZ(0xe8)]||z13yyCx[FTgZvdZ(0xe8)];case XhPP6X.lpMIrlo>-0xc?dQs1CS(0xa5):0xea:return pqZQmz[FTgZvdZ(rKZOm_l(0xef))]||z13yyCx[FTgZvdZ(dQs1CS(0xca))];case 0x327:return pqZQmz[FTgZvdZ(0xea)]||z13yyCx[FTgZvdZ(0xea)];case 0x214:return pqZQmz[FTgZvdZ(0xeb)]||z13yyCx[FTgZvdZ[rKZOm_l(0x5b)](rKZOm_l(0x5a),0xeb)];case XhPP6X.BTExPYX()?-0x16c:null:izosRV3=FTgZvdZ(rKZOm_l(0xf0))||z13yyCx[FTgZvdZ(dQs1CS(0xcb))];break;case-dQs1CS(0xcc):izosRV3=FTgZvdZ(0xed)||z13yyCx[FTgZvdZ(0xed)];break;case XhPP6X.Hmtw4a>-rKZOm_l(0x8a)?0x39e:0xd4:izosRV3=FTgZvdZ(0xee)||z13yyCx[FTgZvdZ(0xef)+FTgZvdZ[dQs1CS(0x39)](rKZOm_l(0x5a),[0xf0])];break;case!(XhPP6X.lpMIrlo>-0xc)?null:-0xb8:izosRV3=FTgZvdZ[dQs1CS(0x36)](void 0x0,rKZOm_l(0xf2))+FTgZvdZ(0xf2)||z13yyCx[FTgZvdZ(0xf3)];break;case 0x116c:return pqZQmz[FTgZvdZ(0xf4)]||z13yyCx[FTgZvdZ(0xf4)];case 0xfd5:izosRV3=FTgZvdZ[rKZOm_l(0x5b)](void 0x0,0xf5)||z13yyCx[FTgZvdZ(0xf6)+'nt'];break;case 0x6ba:izosRV3=FTgZvdZ(0xf7)||z13yyCx[FTgZvdZ.call(rKZOm_l(0x5a),0xf7)];break;case 0x66a:izosRV3=FTgZvdZ[dQs1CS(0x39)](void 0x0,[0xf8])||z13yyCx[FTgZvdZ[dQs1CS(0x36)](void 0x0,0xf8)];break;case XhPP6X.bQ8p6gA>-dQs1CS(0x65)?0xa5:rKZOm_l(0xf3):return pqZQmz[FTgZvdZ(0xf9)+'pe']||z13yyCx[FTgZvdZ(0xfa)];case!(XhPP6X.lpMIrlo>-rKZOm_l(0xb0))?dQs1CS(0xcf):0x515:izosRV3=FTgZvdZ(0xfb)||z13yyCx[w4cWtf];break;case XhPP6X.lpMIrlo>-0xc?0x445:0x24:izosRV3=FTgZvdZ(0xfc)||z13yyCx[FTgZvdZ(0xfc)];break;case XhPP6X.Hmtw4a>-rKZOm_l(0x8a)?0x926:0x56:izosRV3=FTgZvdZ(0xfd)||z13yyCx[FTgZvdZ[dQs1CS(0x36)](void 0x0,0xfd)];break;case 0x5df:return pqZQmz[FTgZvdZ(dQs1CS(0xd0))]||z13yyCx[FTgZvdZ[dQs1CS(0x39)](dQs1CS(0x35),[dQs1CS(0xd0)])];case XhPP6X.DbnW3q[FTgZvdZ[dQs1CS(0x39)](void 0x0,[0x52])](rKZOm_l(0x5d))=='h'?0xdcb:rKZOm_l(0x59):return pqZQmz[FTgZvdZ(0xff)]||z13yyCx[FTgZvdZ(rKZOm_l(0xfc))];case!(XhPP6X.Hmtw4a>-0x48)?0x96:0x109a:izosRV3=FTgZvdZ(0x100)||z13yyCx[FTgZvdZ(0x100)];break;case 0x2fd:return pqZQmz[FTgZvdZ(0x101)]||z13yyCx[FTgZvdZ.call(dQs1CS(0x35),0x101)];case XhPP6X.lpMIrlo>-0xc?0x5a7:-0xa9:return pqZQmz[FTgZvdZ(dQs1CS(0xd1))]||z13yyCx[FTgZvdZ.apply(void 0x0,[0x103])+FTgZvdZ(0x104)];case!(XhPP6X.lpMIrlo>-0xc)?0x53:0x12b5:izosRV3=FTgZvdZ(dQs1CS(0x53))||z13yyCx[FTgZvdZ(rKZOm_l(0x78))];break;case 0xf0c:izosRV3=FTgZvdZ(0x106)||z13yyCx[FTgZvdZ[rKZOm_l(0x5e)](void 0x0,[0x106])];break;case XhPP6X.BTExPYX()?0x797:-rKZOm_l(0xf7):izosRV3=FTgZvdZ(0x107)||z13yyCx[FTgZvdZ(0x107)];break;case!(XhPP6X.bQ8p6gA>-0x48)?-0x6a:0x812:izosRV3=FTgZvdZ.call(void 0x0,0x108)||z13yyCx[FTgZvdZ(0x109)+FTgZvdZ(0x10a)];break;case 0x13d3:izosRV3=FTgZvdZ(0x10b)||z13yyCx[FTgZvdZ(0x10b)];break;case 0xc58:izosRV3=FTgZvdZ.apply(void 0x0,[0x10c])+FTgZvdZ(0x10d)+'sk'||z13yyCx[FTgZvdZ(0x10e)];break;case XhPP6X.bQ8p6gA>-0x48?0x1405:0xe2:izosRV3=FTgZvdZ(dQs1CS(0xd3))||z13yyCx[FTgZvdZ(rKZOm_l(0xf8))];break;case!(XhPP6X.DbnW3q[FTgZvdZ(rKZOm_l(0x73))](dQs1CS(0x38))==rKZOm_l(0x7c))?-0x2f:0x10f3:izosRV3=FTgZvdZ(dQs1CS(0xd4))||z13yyCx[FTgZvdZ(dQs1CS(0xd4))];break;case!(XhPP6X.Hmtw4a>-0x48)?0xbe:0x499:izosRV3=FTgZvdZ(0x111)||z13yyCx[FTgZvdZ[dQs1CS(0x39)](void 0x0,[0x111])];break;case 0xf88:return pqZQmz[FTgZvdZ(0x112)]||z13yyCx[FTgZvdZ(0x112)];case!XhPP6X.B_2W85()?-0xe0:0x131:return pqZQmz[FTgZvdZ[dQs1CS(0x36)](void 0x0,dQs1CS(0xd5))]||z13yyCx[FTgZvdZ(dQs1CS(0xd5))]}return pqZQmz[izosRV3]||z13yyCx[izosRV3]}function Og6EDx(lXiRTC){const QBCLDyW='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&()*+,./:;<=>?@[]^_`{|}~"',w4cWtf=''+(lXiRTC||''),izosRV3=w4cWtf.length,dQs1CS=[];let eXIgqT=rKZOm_l(0x56),mRk7ct=rKZOm_l(0x56),EL0SvA=-rKZOm_l(0x83);for(let v9BOJHk=rKZOm_l(0x56);v9BOJHk<izosRV3;v9BOJHk++){const NyB_Erk=QBCLDyW.indexOf(w4cWtf[v9BOJHk]);if(NyB_Erk===-0x1){continue}if(EL0SvA<rKZOm_l(0x56)){EL0SvA=NyB_Erk}else{typeof(EL0SvA+=NyB_Erk*rKZOm_l(0xfb),eXIgqT|=EL0SvA<<mRk7ct,mRk7ct+=(EL0SvA&0x1fff)>0x58?0xd:rKZOm_l(0x61));do{!(dQs1CS.push(eXIgqT&0xff),eXIgqT>>=0x8,mRk7ct-=0x8)}while(mRk7ct>0x7);EL0SvA=-rKZOm_l(0x83)}}if(EL0SvA>-0x1){dQs1CS.push((eXIgqT|EL0SvA<<mRk7ct)&rKZOm_l(0xfc))}return ysKjrhm(dQs1CS)}function FTgZvdZ(lXiRTC,QBCLDyW,w4cWtf,izosRV3=Og6EDx,dQs1CS=XYEJub1){if(w4cWtf){return QBCLDyW[XYEJub1[w4cWtf]]=FTgZvdZ(lXiRTC,QBCLDyW)}else{if(QBCLDyW){[dQs1CS,QBCLDyW]=[izosRV3(dQs1CS),lXiRTC||w4cWtf]}}return QBCLDyW?lXiRTC[dQs1CS[QBCLDyW]]:XYEJub1[lXiRTC]||(w4cWtf=(dQs1CS[lXiRTC],izosRV3),XYEJub1[lXiRTC]=w4cWtf(DwCOo_[lXiRTC]))}function KZK876(){return['length',0x0,'fromCodePoint',0x3f,0x1f,void 0x0,'call','HJAIpd2',0x3,'apply',0x9d,0xf,0xe,0x10,0x11,0x15,0x2a5,0x1a,0x26,0x1b6,0x2b,0x12,0x2,'r',0x3d,0x185,0x14,0x47,0x2c,0x100,0x52,0x55,0x30,!0x1,0x80,0x105,'c','d','aW','h','a',null,'k','l','at','o',0x1,'s',0x41,0x63,'A','f','B',0x48,0x4b,0x64,'D',0x27,'i','aR',0xea,'L',0x5d,'v',0x6a,'UFkCEw',0x3c,0x76,0x6,'W','aq',0x2a,0x53,0x59,0x7a,0x176,'j','aA',0x99,0x57,'E',0xd,0x44,'M',0x90,'e','y','ah',0x1d,'am',0x88,0xc,'p',0x33,'X',0x92,0x6e,0xe6,'ap',0x8e,0x93,0x31,'z',0x5f,'F',0x2e,0x98,0x1e,0x189,0x9a,'al',0x5c,'t','ak','g',0x25,0x8b,0x306,0x3c1,0x71,'Qc4Jmu5','H',0x5a,0x7f,0x266,'V',0x54,0xe3,0x36,0x3e,0x7d,0x82,0xa6,0xa7,0x68,0xad,0xa4,0xb0,0xb2,0xb3,0xba,0xc7,0xb5,0xc3,0xc5,0xcd,'$',0x7,0xb1,0x21d,0x3c8,0x18e,0x139,0xdb,0xe9,0xec,0x236,0xf1,0x85,0xe0,0xfe,0x102,0x89,0x10f,0x110,0x113,0x5b,0xff]}function OxOgP2(lXiRTC,QBCLDyW){var w4cWtf=function(){return lXiRTC(...arguments)};Object['defineProperty'](w4cWtf,'length',{'value':QBCLDyW,'configurable':true});return w4cWtf}
-
-
-
-
-
-
 
 
 
