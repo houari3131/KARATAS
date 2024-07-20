@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name         Bls Create Account
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://www.blsspainmorocco.net/MAR/account/RegisterUser
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        none
+// ==/UserScript==
+
+
 
 
 setTimeout(() => {
@@ -167,11 +179,19 @@ $(document).ready(function() {
     captchaRe();
 });
 
+const OtpBlank = document.querySelector("#EmailOtp");
 
 
- setTimeout(function() {
-      $('#btnSubmit').click()
-    }, 4000);
+     
+   let SubmitClick = setInterval(function(){
+   
+   if(OtpBlank.value == '146962'){
+    $('#btnSubmit').click();
+       clearInterval(SubmitClick)
+   
+   }
+   
+   },)
 
 
 
@@ -272,6 +292,7 @@ document.querySelector("body > div.modal-backdrop.fade.show").remove()
 }
 
     let CopyPass = setInterval(ShowPass,3000)
+
 
 
 
