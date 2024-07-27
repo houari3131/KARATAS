@@ -12,7 +12,7 @@ function SendMessage(text){
 
 }
     var formattedMessage = `\n City: ${localStorage.location}\n Category: ${localStorage.category}\n Type: ${localStorage.visaSubtype}\n ${localStorage.UserID}`;
-Notify(formattedMessage);
+SendMessage(formattedMessage);
 clearInterval(OnAgree)
 }
 
