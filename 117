@@ -24,7 +24,7 @@
         { includes: '/MAR/Bls/vt', urls: ['http://localhost:4000/fetch-script/6','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19'] },
         { includes: '/MAR/blsappointment/manageappointment', urls: ['http://localhost:4000/fetch-script/10','http://localhost:4000/fetch-script/11','http://localhost:4000/fetch-script/12',
 'http://localhost:4000/fetch-script/14','http://localhost:4000/fetch-script/22','http://localhost:4000/fetch-script/23',
-'http://localhost:4000/fetch-script/24','http://localhost:4000/fetch-script/26','http://localhost:4000/fetch-script/29']},
+'http://localhost:4000/fetch-script/24','http://localhost:4000/fetch-script/26','http://localhost:4000/fetch-script/29','http://localhost:4000/fetch-script/30']},
         { includes: '/home/index', urls: ['http://localhost:4000/fetch-script/15'] },
         { includes: '?timeOut=True', urls: ['http://localhost:4000/fetch-script/16'] },
        { includes: 'liveness', urls: ['http://localhost:4000/fetch-script/20'] },
