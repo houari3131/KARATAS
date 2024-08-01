@@ -34,6 +34,8 @@
  { includes: 'liveness/liveness', urls: ['http://localhost:4000/fetch-script/25'] },
  { includes: 'payment.cmi.co.ma', urls: ['http://localhost:4000/fetch-script/26'] },
 { includes: 'vpf', urls: ['http://localhost:4000/fetch-script/27'] },
+{ includes: '/DataProtectionEmailSent', urls: ['http://localhost:4000/fetch-script/32'] },
+{ includes: '/dataprotectionemailaccept', urls: ['http://localhost:4000/fetch-script/33'] },
 
 
       //  { includes: '/DZA/bls/vtv', urls: ['http://localhost:4000/fetch-script/script1'] },
