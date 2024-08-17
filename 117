@@ -35,14 +35,11 @@
 'http://localhost:4000/fetch-script/29','http://localhost:4000/fetch-script/30']},
 
 { includes: 'ApplicantSelection', urls: ['http://localhost:4000/fetch-script/10','http://localhost:4000/fetch-script/11','http://localhost:4000/fetch-script/12',
-'http://localhost:4000/fetch-script/144','http://localhost:4000/fetch-script/22','http://localhost:4000/fetch-script/23',
+'http://localhost:4000/fetch-script/22','http://localhost:4000/fetch-script/23',
 'http://localhost:4000/fetch-script/24','http://localhost:4000/fetch-script/26',
 'http://localhost:4000/fetch-script/29','http://localhost:4000/fetch-script/30']},
 
-{ includes: 'SlotSelection', urls: ['http://localhost:4000/fetch-script/10','http://localhost:4000/fetch-script/11','http://localhost:4000/fetch-script/12',
-'http://localhost:4000/fetch-script/144','http://localhost:4000/fetch-script/22','http://localhost:4000/fetch-script/23',
-'http://localhost:4000/fetch-script/24','http://localhost:4000/fetch-script/26',
-'http://localhost:4000/fetch-script/29','http://localhost:4000/fetch-script/30']},
+{ includes: 'SlotSelection', urls: ['http://localhost:4000/fetch-script/144',]},
 
 { includes: '/home/index', urls: ['http://localhost:4000/fetch-script/15'] },
         { includes: '?timeOut=True', urls: ['http://localhost:4000/fetch-script/16'] },
