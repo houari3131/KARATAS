@@ -1,4 +1,4 @@
-
+document.querySelector("#termsmodal > div > div > div.modal-footer > button.btn.btn-primary").click()
 var MylocalStorage = localStorage.getItem('Auto Upload Photo');
 
 
