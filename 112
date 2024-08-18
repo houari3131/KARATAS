@@ -7,7 +7,7 @@ document.getElementsByClassName('rdo-applicant')[0].click()
 var submit = setInterval(function(){
 
 if(document.querySelector("#TravelDate").value!== ''&& document.querySelector("#IntendedDateOfArrival").value !== '' 
-   && document.querySelector("#IntendedDateOfDeparture").value !=='' && $("#ApplicantPhotoId").val() !== '' ){
+   && document.querySelector("#IntendedDateOfDeparture").value !=='' && $("#ApplicantPhotoId").val() !== ''&& document.querySelector("#EmailCode").value == '6'){
     
 $('#btnSubmit').click()
     clearInterval(submit);
