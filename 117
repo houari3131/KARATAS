@@ -25,8 +25,7 @@
     //    { includes: '/MAR/Bls/vt', urls: ['http://localhost:4000/fetch-script/6','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31']},
         
  { includes: '/VisaType?data', urls: ['http://localhost:4000/fetch-script/66','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31']},
-        { includes: 'visatype?data', urls: ['http://localhost:4000/fetch-script/66','http://localhost:4000/fetch-script/9',
-'http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31','http://localhost:4000/fetch-script/38']},
+{ includes: 'visatype?data', urls: ['http://localhost:4000/fetch-script/66','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31','http://localhost:4000/fetch-script/38']},
         
 
 
