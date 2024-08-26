@@ -1,6 +1,5 @@
 
 
-
 // Dynamically load the CryptoJS library
 var script = document.createElement('script');
 script.src = 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js';
@@ -32,31 +31,46 @@ script.onload = function() {
   slotSelection: 'on',
   applicantSelection: 'on',
 }
-class AppointmentCaptchaBot {
-  start () {
-    console.log(`${this.constructor.name} started`)
-var VisaTypeCaptchaAutoSolve = localStorage.getItem('Captcha Visa Type Auto Solve')
-    this.#removeRandomnessFromUi()
-if(localStorage.captchaautosolve == 'true' && VisaTypeCaptchaAutoSolve = 'true' ){
-    this.#solveCaptcha()
-}
-  }
 
 
 
 
 
-  #removeRandomnessFromUi () {
+  function removeRandomnessFromUi () {
     // Center main content
     $('.row:has(> .captcha-div) > [class^=col-]').hide()
     $('.captcha-div').addClass('mx-auto')
   }
+ function getCaptchaTarget () {
+    return $('.box-label')
+      .sort((a, b) => getComputedStyle(b).zIndex - getComputedStyle(a).zIndex)
+      .first()
+      .text()
+      .replace(/\D+/, '')
+  }
 
-  #solveCaptcha () {
+ function getCaptchaGrid () {
+    // From top-to-bottom and left-to-right
+    return $(':has(> .captcha-img):visible').get()
+      // Group by top position
+      .reduce((acc, cur) => {
+        (acc[Math.floor(cur.offsetTop)] ??= []).push(cur)
+        return acc
+      }, [])
+      .flatMap(sortedByTop => {
+        const sortedByZIndex = sortedByTop.sort((a, b) => getComputedStyle(b).zIndex - getComputedStyle(a).zIndex)
+        const top3 = sortedByZIndex.slice(0, 3) // max cells
+        const sortedByLeft = top3.sort((a, b) => a.offsetLeft - b.offsetLeft)
+        return sortedByLeft
+      })
+      .map(element => element.firstElementChild)
+  }
+
+  function solveCaptcha () {
     if (!(/on|true/.test(captcha.enabled) && captcha.apiKey)) return
 
-    const target = this.#getCaptchaTarget()
-    const grid = this.#getCaptchaGrid()
+    const target = getCaptchaTarget();
+    const grid = getCaptchaGrid();
 
     const extractCaptchaGridData = grid => Object.fromEntries(grid.map(img => img.src).entries())
 
@@ -103,43 +117,26 @@ if(localStorage.captchaautosolve == 'true' && VisaTypeCaptchaAutoSolve = 'true' 
 		})
   }
 
-  #getCaptchaTarget () {
-    return $('.box-label')
-      .sort((a, b) => getComputedStyle(b).zIndex - getComputedStyle(a).zIndex)
-      .first()
-      .text()
-      .replace(/\D+/, '')
+
+
+
+ function start () {
+    console.log(`${this.constructor.name} started`)
+var VisaTypeCaptchaAutoSolve = localStorage.getItem('Captcha Visa Type Auto Solve')
+    removeRandomnessFromUi()
+     if(localStorage.captchaautosolve == 'true' && VisaTypeCaptchaAutoSolve == 'true' ){
+    solveCaptcha();
+     }
   }
 
-  #getCaptchaGrid () {
-    // From top-to-bottom and left-to-right
-    return $(':has(> .captcha-img):visible').get()
-      // Group by top position
-      .reduce((acc, cur) => {
-        (acc[Math.floor(cur.offsetTop)] ??= []).push(cur)
-        return acc
-      }, [])
-      .flatMap(sortedByTop => {
-        const sortedByZIndex = sortedByTop.sort((a, b) => getComputedStyle(b).zIndex - getComputedStyle(a).zIndex)
-        const top3 = sortedByZIndex.slice(0, 3) // max cells
-        const sortedByLeft = top3.sort((a, b) => a.offsetLeft - b.offsetLeft)
-        return sortedByLeft
-      })
-      .map(element => element.firstElementChild)
-  }
-}
 
 
+start();
 
-
-new AppointmentCaptchaBot().start();
 
 
 
 
 
 };
-
-
-
 
