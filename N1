@@ -10,7 +10,7 @@
     },
   ];
 const autoSubmitForms = {
-   login: localStorage.autoLogin,
+   login: 'on',
   loginCaptcha: localStorage.captchaautosolve,
   appointmentCaptcha: localStorage.captchaautosolve,
   visaType: 'on',
@@ -20,12 +20,13 @@ const autoSubmitForms = {
 
   class LoginBot {
     start() {
-
+var AutoLogin = localStorage.getItem('Auto Login')
     this.#removeRandomnessFromUi()
     this.#enableCopyPasteInInputs()
     this.#setReturnUrl()
+if(localStorage.autoLogin == 'true' && AutoLogin =='true'){
     this.#fillForm()
-
+}
     }
 
 
