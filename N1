@@ -1,6 +1,5 @@
 
-(function() {
-  'use strict';
+document.addEventListener('DOMContentLoaded', () => {
 
   const applicants = [
     {
@@ -63,4 +62,5 @@ if(localStorage.autoLogin == 'true' && AutoLogin =='true'){
 
 
  start();
-})();
+
+});
