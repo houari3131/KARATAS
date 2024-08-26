@@ -2,7 +2,8 @@
 
 (function() {
     'use strict';
-
+if(window.location.href.includes("VisaType?data")){
+}else{
     let clientsVisible = false;
 localStorage.selfie = 'true'
     // Add a new client
@@ -972,7 +973,7 @@ var fields=[];
     }
 
     init();
-
+}
 })();
 
 
