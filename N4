@@ -1,12 +1,16 @@
 
-(function() {
+
+
     'use strict';
+var VisaTypeAutoSubmit = localStorage.getItem('Auto Submit Visa Type');
+console.log(VisaTypeAutoSubmit);
 
   const autoSubmitForms = {
   login: localStorage.autoLogin,
   loginCaptcha: localStorage.captchaautosolve,
   appointmentCaptcha: localStorage.captchaautosolve,
   visaType: localStorage.isEnabled,
+  AutoVisaType  : VisaTypeAutoSubmit,
   slotSelection: 'on',
   applicantSelection: 'on',
 }
@@ -23,7 +27,7 @@ const applicants = [
     visa: localStorage.visaSubtype, // sch, std, famr, nat, work, c1, c2, c3
   },
 ]
-const global = typeof unsafeWindow !== 'undefined' ? unsafeWindow : window;
+const global = window; // or just replace `global.` with `window.`
 
 
 class VisaTypeBot {
@@ -157,7 +161,7 @@ class VisaTypeBot {
           && (selectedLoc?.VisaSubTypeIds?.includes(it.Id) ?? true)
       })
 
-    ;/on|true/.test(autoSubmitForms?.visaType) && $('#btnSubmit').trigger('click')
+    ;/on|true/.test(autoSubmitForms?.visaType) && /on|true/.test(autoSubmitForms?.AutoVisaType) && $('#btnSubmit').trigger('click')
   }
 }
 
@@ -168,4 +172,3 @@ class VisaTypeBot {
 new VisaTypeBot().start();
 
 
-})();
