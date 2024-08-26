@@ -1,5 +1,5 @@
 
-if(window.href.location.includes('/MAR/NewCaptcha/LoginCaptcha') || window.href.location.includes('MAR/newcaptcha/logincaptcha'') ){
+if(window.location.href.includes('/MAR/NewCaptcha/LoginCaptcha') || window.location.href.includes('MAR/newcaptcha/logincaptcha'') ){
 
 }else{
   const applicants = [
