@@ -1,3 +1,13 @@
+// ==UserScript==
+// @name        BLS Spain Morocco Slot Selection Bot
+// @version     1.0.0
+// @description Automates the slot selection process on BLS Spain Morocco website.
+// @match       https://www.blsspainmorocco.net/MAR/Appointment/SlotSelection*
+// @grant       unsafeWindow
+// @run-at      document-end
+// ==/UserScript==
+
+
 
 
 (function() {
@@ -28,15 +38,15 @@ function shuffleArray (array) {
     function sendMessage1(text) {
         var temsg=  "BLS ON MAROC   :"+text;
         const msg = encodeURIComponent(temsg +" ON")
-       
+
           fetch('https://api.telegram.org/bot7373477501:AAFrSLeWYaKL3kFbch-38rlAjj6AwVCf00k/sendMessage?chat_id=-1002182656332&text='+msg);
         }
-    
-    
+
+
     function sendMessage2(text) {
         var temsg=  "BLS ON MAROC   :"+"\n"+text;
         const msg = encodeURIComponent(temsg +" ON")
-       
+
           fetch('https://api.telegram.org/bot7313056674:AAEIivyB_ADYOQwDDT6Mx_dJBJOQjq0Fe9s/sendMessage?chat_id=-1002186788637&text='+msg);
         }
 
@@ -66,14 +76,14 @@ function notify()
                      teeBoot=teeBoot+" "+value.DateText;
                 });
                 ShowError(teeBoot);
-                
+
                       sendMessage1(locationIdfff+ "\n" + categoryIdfff + "\n"+ visasubTypeff + "\n" +teeBoot);
                 sendMessage2(locationIdfff+ "\n" + categoryIdfff + "\n"+ visasubTypeff + "\n" +teeBoot);
-               
-               
-                
+
+
+
     }
-    
+
 }
 notify();
 
@@ -153,7 +163,15 @@ class SlotSelectionBot {
     let selectedSlot = shuffleArray(availableSlots).at(random(0, availableSlots.length - 1))
     availableSlots.forEach(s => s.Count > selectedSlot.Count && (selectedSlot = s))
     if (selectedSlot) {
-      speechSynthesis.speak(new SpeechSynthesisUtterance('Appointment slot available !!!'))
+     const voices = window.speechSynthesis.getVoices();
+const utterance = new SpeechSynthesisUtterance('Get The Appointnment Slot !!!');
+
+// Select a specific voice
+// You can replace the voice name with any available voice in your system
+utterance.voice = voices.find(voice => voice.name === 'Google US English' || voice.name === 'Microsoft Zira Desktop');
+
+// Speak with the selected voice
+speechSynthesis.speak(utterance);
 
       const slotDropDown = $('.k-dropdown:visible > .form-control').data('kendoDropDownList')
       slotDropDown.setDataSource(slots)
