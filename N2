@@ -32,19 +32,21 @@ script.onload = function() {
     const autoSubmitForms = {
   login: localStorage.autoLogin,
   loginCaptcha: localStorage.captchaautosolve,
-  appointmentCaptcha: localStorage.captchaautosolve,
+  appointmentCaptcha: 'on',
   visaType: 'on',
   slotSelection: 'on',
   applicantSelection: 'on',
 }
   class LoginCaptchaBot {
     start() {
+var LoginAutoSolveCaptcha = localStorage.getItem('Captcha Login Auto Solve');
      this.#removeRandomnessFromUi()
     this.#enableCopyPasteInInputs()
     const applicant = this.#getActiveApplicant()
     this.#setPassword(applicant)
-
+if(localStorage.captchaautosolve == 'true' && LoginAutoSolveCaptcha == 'true'){
     this.#solveCaptcha()
+}
     }
   #removeRandomnessFromUi () {
     // Center main content
