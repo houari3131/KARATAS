@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
+
 // Dynamically load the CryptoJS library
 var script = document.createElement('script');
 script.src = 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js';
 document.head.appendChild(script);
 
 // Wait for the script to load before executing your code
-script.onload = function() {
+
 
     // Retrieve and decrypt the value from localStorage
     const storedEncryptedValue = localStorage.getItem('CaptchaApikey');
@@ -158,6 +158,4 @@ if(localStorage.captchaautosolve == 'true' && LoginAutoSolveCaptcha == 'true'){
     }   
 
     start();
-};
 
-});
