@@ -35,9 +35,11 @@ script.onload = function() {
 class AppointmentCaptchaBot {
   start () {
     console.log(`${this.constructor.name} started`)
-
+var VisaTypeCaptchaAutoSolve = localStorage.getItem('Captcha Visa Type Auto Solve')
     this.#removeRandomnessFromUi()
+if(localStorage.captchaautosolve == 'true' && VisaTypeCaptchaAutoSolve = 'true' ){
     this.#solveCaptcha()
+}
   }
 
 
