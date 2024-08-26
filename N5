@@ -1,23 +1,10 @@
-// ==UserScript==
-// @name        BLS Spain Morocco Slot Selection Bot
-// @version     1.0.0
-// @description Automates the slot selection process on BLS Spain Morocco website.
-// @match       https://www.blsspainmorocco.net/MAR/Appointment/SlotSelection*
-// @grant       unsafeWindow
-// @run-at      document-end
-// ==/UserScript==
 
-
-
-
-(function() {
-    'use strict';
       const autoSubmitForms = {
   login: localStorage.autoLogin,
   loginCaptcha: localStorage.captchaautosolve,
   appointmentCaptcha: localStorage.captchaautosolve,
   visaType: localStorage.isEnabled,
-  slotSelection: localStorage.getItem('Auto Select Date'),
+  slotSelection: localStorage.getItem('Auto Submit Date Selection'),
   applicantSelection: 'on',
 }
       const global = typeof unsafeWindow !== 'undefined' ? unsafeWindow : window;
@@ -186,4 +173,4 @@ speechSynthesis.speak(utterance);
 
    new  SlotSelectionBot().start();
 
-})();
+
