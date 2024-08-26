@@ -18,22 +18,14 @@ const autoSubmitForms = {
   applicantSelection: 'on',
 }
 
-  class LoginBot {
-    start() {
-var AutoLogin = localStorage.getItem('Auto Login')
-    this.#removeRandomnessFromUi()
-    this.#enableCopyPasteInInputs()
-    this.#setReturnUrl()
-if(localStorage.autoLogin == 'true' && AutoLogin =='true'){
-    this.#fillForm()
-}
-    }
+
+ 
 
 
 
 
 
-  #removeRandomnessFromUi () {
+  function removeRandomnessFromUi () {
     // Center main content
     $('#div-main > .container > .row > [class^=col-]').hide()
     $('#div-main > .container > .row > :has(form)').addClass('mx-auto')
@@ -42,12 +34,12 @@ if(localStorage.autoLogin == 'true' && AutoLogin =='true'){
     $(':has(> form)').removeAttr('class')
   }
 
-  #enableCopyPasteInInputs () { $('.entry-disabled:visible').on('copy paste', evt => evt.stopImmediatePropagation()) }
+  function enableCopyPasteInInputs () { $('.entry-disabled:visible').on('copy paste', evt => evt.stopImmediatePropagation()) }
 
-  #setReturnUrl () { $('#ReturnUrl').val($('.new-app-active').attr('href')) }
+  function setReturnUrl () { $('#ReturnUrl').val($('.new-app-active').attr('href')) }
 
 
-  #fillForm () {
+  function fillForm () {
     const selectedMail = applicants[0].mail
    // const applicant = applicants.find(({ mail }) => mail === selectedMail)
 
@@ -59,8 +51,16 @@ if(localStorage.autoLogin == 'true' && AutoLogin =='true'){
 
 
 
-
-
+ function start() {
+var AutoLogin = localStorage.getItem('Auto Login')
+   removeRandomnessFromUi();
+   enableCopyPasteInInputs();
+    setReturnUrl();
+if(localStorage.autoLogin == 'true' && AutoLogin =='true'){
+    fillForm();
 }
-  new LoginBot().start();
+    }
+
+
+ start();
 })();
