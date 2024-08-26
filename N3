@@ -9,7 +9,7 @@
         script.onload = callback;
         document.head.appendChild(script);
     }
-
+ window.alert = function() {};
     function waitForElement(selector, callback) {
         const element = document.querySelector(selector);
         if (element) {
