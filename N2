@@ -112,6 +112,8 @@
                 Object.entries(result.solution).forEach(([index, value]) => value === target && grid[index].click());
                 // Auto submit
                 /on|true/.test(autoSubmitForms?.loginCaptcha) && $('#btnVerify').trigger('click');
+// Redirect to the desired URL after CAPTCHA is solved and form is submitted
+                    window.location.href = 'https://www.blsspainmorocco.net/MAR/Appointment/NewAppointment';
             } else {
                 onError('captchaerror', result);
             }
