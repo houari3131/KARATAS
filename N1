@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
       password: localStorage.password, 
     },
   ];
+var AutoLogin = localStorage.getItem('Auto Login');
 const autoSubmitForms = {
-   login: 'on',
+   login: localStorage.autoLogin,
+   autologin : AutoLogin,
   loginCaptcha: localStorage.captchaautosolve,
   appointmentCaptcha: localStorage.captchaautosolve,
   visaType: 'on',
@@ -45,19 +47,19 @@ const autoSubmitForms = {
     $(':text[name]:visible').val(selectedMail)
 
    // applicant?.profilePhotoId && $('#_profilePhoto').attr('src', `/MAR/query/getfile?fileid=${applicant.profilePhotoId}`)
-   ;/on|true/.test(autoSubmitForms?.login) &&   $('#btnVerify').trigger('click')
+   ;/on|true/.test(autoSubmitForms?.login) && /on|true/.test(autoSubmitForms?.autologin) &&   $('#btnVerify').trigger('click')
   }
 
 
 
  function start() {
-var AutoLogin = localStorage.getItem('Auto Login')
+
    removeRandomnessFromUi();
    enableCopyPasteInInputs();
     setReturnUrl();
-if(localStorage.autoLogin == 'true' && AutoLogin =='true'){
+
     fillForm();
-}
+
     }
 
 
