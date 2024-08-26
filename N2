@@ -1,26 +1,30 @@
 
-// Dynamically load the CryptoJS library
-var script = document.createElement('script');
-script.src = 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js';
-document.head.appendChild(script);
-
-// Wait for the script to load before executing your code
-
-
-    // Retrieve and decrypt the value from localStorage
-    const storedEncryptedValue = localStorage.getItem('CaptchaApikey');
-    if (!storedEncryptedValue) {
-        console.error('Captcha API key not found in localStorage');
-        return;
+    function loadCryptoJS(callback) {
+        var script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js';
+        script.onload = callback;
+        document.head.appendChild(script);
     }
 
-    const decryptedValue = CryptoJS.AES.decrypt(storedEncryptedValue, 'secret-passphrase').toString(CryptoJS.enc.Utf8);
-    if (!decryptedValue) {
-        console.error('Failed to decrypt the Captcha API key');
-        return;
+    function waitForElement(selector, callback) {
+        const element = document.querySelector(selector);
+        if (element) {
+            callback();
+        } else {
+            setTimeout(() => waitForElement(selector, callback), 500); // Retry after 500ms
+        }
     }
 
-    var captchaApikey = decryptedValue;
+
+   function solveCaptcha() {
+   console.log("solveCaptcha function started.");
+
+        // Retrieve and decrypt the value from localStorage
+        const storedEncryptedValue = localStorage.getItem('CaptchaApikey');
+        const decryptedValue = CryptoJS.AES.decrypt(storedEncryptedValue, 'secret-passphrase').toString(CryptoJS.enc.Utf8);
+        console.log('Decrypted Captcha API key:', decryptedValue);
+
+        const captchaApikey = decryptedValue;
     
     const captcha = {
         enabled: 'true',
@@ -94,7 +98,7 @@ document.head.appendChild(script);
             .map(element => element.firstElementChild);
     }
 
-    function solveCaptcha() {
+    function solve() {
         if (!(/on|true/.test(captcha.enabled) && captcha.apiKey)) return;
 
         const target = getCaptchaTarget();
@@ -145,17 +149,26 @@ document.head.appendChild(script);
             },
         });
     }
-
-    function start() {
-     var LoginAutoSolveCaptcha = localStorage.getItem('Captcha Login Auto Solve');
         removeRandomnessFromUi();
-        enableCopyPasteInInputs();
+       enableCopyPasteInInputs();
         const applicant = getActiveApplicant();
         setPassword(applicant);
+        
+        waitForElement('.box-label', () => {
+            if (localStorage.captchaautosolve === 'true' && localStorage.getItem('Captcha Visa Type Auto Solve') === 'true') {
+                solve();
+            }
+        });
+   }
+    function start() {
+    loadCryptoJS(solveCaptcha);
+     var LoginAutoSolveCaptcha = localStorage.getItem('Captcha Login Auto Solve');
+        
+      
 if(localStorage.captchaautosolve == 'true' && LoginAutoSolveCaptcha == 'true'){
         solveCaptcha();
 }
+  
     }   
-
+   
     start();
-
