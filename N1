@@ -1,5 +1,7 @@
 
+if(window.href.location.includes('/MAR/NewCaptcha/LoginCaptcha') || window.href.location.includes('MAR/newcaptcha/logincaptcha'') ){
 
+}else{
   const applicants = [
     {
 
@@ -64,4 +66,4 @@ const autoSubmitForms = {
 
  start();
 
-
+}
