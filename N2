@@ -15,7 +15,7 @@
         }
     }
 
-
+ window.alert = function() {};
    function solveCaptcha() {
    console.log("solveCaptcha function started.");
 
