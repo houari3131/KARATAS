@@ -131,24 +131,24 @@ if(localStorage.versiontype == 'New'){
 
         { includes: 'https://www.blsspainmorocco.net/MAR/', urls: ['http://localhost:4000/fetch-script/1',
 'http://localhost:4000/fetch-script/7','http://localhost:4000/fetch-script/13','http://localhost:4000/fetch-script/18','http://localhost:4000/fetch-script/28','http://localhost:4000/fetch-script/NC']},
-        { includes: '/login', urls: ['http://localhost:4000/fetch-script/N1'] },
-        { includes: '/Login', urls: ['http://localhost:4000/fetch-script/N1'] },
-        { includes: '/LogIn', urls: ['http://localhost:4000/fetch-script/N1'] },
-        { includes: '/logIn', urls: ['http://localhost:4000/fetch-script/N1'] },
-        { includes: '/MAR/NewCaptcha/LoginCaptcha', urls: ['http://localhost:4000/fetch-script/N2','http://localhost:4000/fetch-script/9'] },
-        { includes: 'MAR/newcaptcha/logincaptcha', urls: ['http://localhost:4000/fetch-script/N2','http://localhost:4000/fetch-script/9'] },
+        { includes: '/login', urls: ['http://localhost:4000/fetch-script/NEn1'] },
+        { includes: '/Login', urls: ['http://localhost:4000/fetch-script/NEn1'] },
+        { includes: '/LogIn', urls: ['http://localhost:4000/fetch-script/NEn1'] },
+        { includes: '/logIn', urls: ['http://localhost:4000/fetch-script/NEn1'] },
+        { includes: '/MAR/NewCaptcha/LoginCaptcha', urls: ['http://localhost:4000/fetch-script/NEn2','http://localhost:4000/fetch-script/9'] },
+        { includes: 'MAR/newcaptcha/logincaptcha', urls: ['http://localhost:4000/fetch-script/NEn2','http://localhost:4000/fetch-script/9'] },
 
         { includes: '/MAR/bls/vtv', urls: ['http://localhost:4000/fetch-script/4','http://localhost:4000/fetch-script/9'] },
         { includes: '/MAR/Bls/vtv', urls: ['http://localhost:4000/fetch-script/4','http://localhost:4000/fetch-script/9'] },
 
-       { includes: '/MAR/NewCaptcha/GenerateCaptcha', urls: ['http://localhost:4000/fetch-script/N3'] },
- { includes: 'AppointmentCaptcha', urls: ['http://localhost:4000/fetch-script/N3'] },
- { includes: 'appointmentcaptcha', urls: ['http://localhost:4000/fetch-script/N3'] },
+       { includes: '/MAR/NewCaptcha/GenerateCaptcha', urls: ['http://localhost:4000/fetch-script/NEn3'] },
+ { includes: 'AppointmentCaptcha', urls: ['http://localhost:4000/fetch-script/NEn3'] },
+ { includes: 'appointmentcaptcha', urls: ['http://localhost:4000/fetch-script/NEn3'] },
       //  { includes: '/MAR/bls/vt', urls: ['http://localhost:4000/fetch-script/6','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31']},
     //    { includes: '/MAR/Bls/vt', urls: ['http://localhost:4000/fetch-script/6','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31']},
         
- { includes: '/VisaType?data', urls: ['http://localhost:4000/fetch-script/N4','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31','http://localhost:4000/fetch-script/38']},
-{ includes: 'visatype?data', urls: ['http://localhost:4000/fetch-script/N4','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31','http://localhost:4000/fetch-script/38']},
+ { includes: '/VisaType?data', urls: ['http://localhost:4000/fetch-script/NEn4','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31','http://localhost:4000/fetch-script/38']},
+{ includes: 'visatype?data', urls: ['http://localhost:4000/fetch-script/NEn4','http://localhost:4000/fetch-script/9','http://localhost:4000/fetch-script/19','http://localhost:4000/fetch-script/31','http://localhost:4000/fetch-script/38']},
         
 
 
