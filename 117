@@ -3,7 +3,7 @@
     'use strict';
 var VersionType = localStorage.versiontype || "New";
     console.log('Tampermonkey script is running');
-if(localStorage.versiontype == 'Old'){
+if(VersionType == 'Old'){
     const scriptMappings = [
 
         { includes: 'https://www.blsspainmorocco.net/MAR/', urls: ['http://localhost:4000/fetch-script/1',
@@ -126,7 +126,7 @@ if(localStorage.versiontype == 'Old'){
 
 
 
-if(localStorage.versiontype == 'New'){
+if(VersionType == 'New'){
     const scriptMappings = [
 
         { includes: 'https://www.blsspainmorocco.net/MAR/', urls: ['http://localhost:4000/fetch-script/1',
