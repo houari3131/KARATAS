@@ -5,7 +5,7 @@
 
   const captcha = {
     enabled: 'true',
-     //  apiKey: 'oosama-4969aa18-0a4a-0746-e216-a9c0d54ddd21',
+ 
       apiKey: 'meddah-e04e2696-5202-b493-8de4-754227186620',
   };
 
