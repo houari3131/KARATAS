@@ -3,6 +3,13 @@
     'use strict';
 var VersionType = localStorage.versiontype || "New";
     console.log('Tampermonkey script is running');
+
+  function loadScript(url) {
+        var script = document.createElement('script');
+        script.src = url;
+        script.async = true;
+        document.head.appendChild(script);
+    }
 if(VersionType == 'Old'){
     const scriptMappings = [
 
