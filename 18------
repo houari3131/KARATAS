@@ -1,0 +1,18 @@
+localStorage.payAmount = 'true'
+
+if(localStorage.familyOfMembers == 1){
+localStorage.For ='Individual'
+     localStorage.NumberOfFamily = 1
+}else{
+        localStorage.For ='Family'
+        localStorage.NumberOfFamily = localStorage.familyOfMembers }
+//// category
+if(localStorage.category == 'Normal'){
+   localStorage.CatId ='5c2e8e01-796d-4347-95ae-0c95a9177b26' // normal
+}
+if(localStorage.category == 'Premium'){
+   localStorage.CatId ='37ba2fe4-4551-4c7d-be6e-5214617295a9' // premium
+}
+if(localStorage.category == 'Prime Time'){
+   localStorage.CatId ='0ec883de-84f4-4474-ae60-572e675873cb' // prime time
+}
