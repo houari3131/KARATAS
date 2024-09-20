@@ -138,7 +138,7 @@ if (location.href.indexOf("SlotSelection") !== -1) {
         var temsg=  "BLS ON MAROC   :"+text;
         const msg = encodeURIComponent(temsg +" ON")
 
-          fetch('https://api.telegram.org/bot7373477501:AAFrSLeWYaKL3kFbch-38rlAjj6AwVCf00k/sendMessage?chat_id=-1002182656332&text='+msg);
+          fetch('https://api.telegram.org/bot7670084469:AAESrySKO55jPIrG4YwVmstgOHNMbCjtpHI/sendMessage?chat_id=-1002182656332&text='+msg);
         }
 
 
@@ -146,7 +146,7 @@ if (location.href.indexOf("SlotSelection") !== -1) {
         var temsg=  "BLS ON MAROC   :"+"\n"+text;
         const msg = encodeURIComponent(temsg +" ON")
 
-          fetch('https://api.telegram.org/bot7313056674:AAEIivyB_ADYOQwDDT6Mx_dJBJOQjq0Fe9s/sendMessage?chat_id=-1002186788637&text='+msg);
+          fetch('https://api.telegram.org/bot7670084469:AAESrySKO55jPIrG4YwVmstgOHNMbCjtpHI/sendMessage?chat_id=-1002186788637&text='+msg);
         }
 
 //----------------------------------------------------------------
