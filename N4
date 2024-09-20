@@ -147,6 +147,10 @@ class VisaTypeBot {
         'Casa 2':'Casa 2',
         c3: 'Casa 3', casa3: 'Casa 3',
         'Casa 3':'Casa 3',
+        'Students - Language/selectivity':'Students - Language/selectivity',
+        'Students - Non-tertiary studies':'Students - Non-tertiary studies',
+        'Students - Graduate studies':'Students - Graduate studies',
+        'Student - Others':'Student - Others',
     }[this.#applicant?.visa]
     const selectedVisaSubtype = global.visasubIdData
         .find(it => it.Name === normalizedVisaSubtype)
