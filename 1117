@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 var VersionType = localStorage.versiontype || "New";
-    console.log('Tampermonkey script is running');
+   // console.log('Tampermonkey script is running');
 
   function loadScript(url) {
         var script = document.createElement('script');
@@ -74,7 +74,7 @@ if(VersionType == 'Old'){
      //  console.log(`Matching URL found: ${currentUrl}. Fetching scripts from:`, matchedScriptUrls);
         matchedScriptUrls.forEach(url => fetchAndExecuteScript(url));
     } else {
-        console.log('No matching URL found for current page.');
+      //  console.log('No matching URL found for current page.');
     }
 
     function fetchAndExecuteScript(url) {
