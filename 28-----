@@ -215,10 +215,10 @@ var catButton = createButton(category, function() {
         localStorage.category = 'Premium';
         catButton.textContent = 'Premium';
     } else if (category === 'Premium') {
-        category = 'Prime time';
-        localStorage.category = 'Prime time';
-        catButton.textContent = 'Prime time';
-    } else if (category === 'Prime time') {
+        category = 'Prime Time';
+        localStorage.category = 'Prime Time';
+        catButton.textContent = 'Prime Time';
+    } else if (category === 'Prime Time') {
         category = 'Normal';
         localStorage.category = 'Normal';
         catButton.textContent = 'Normal';
