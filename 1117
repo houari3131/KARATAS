@@ -1,6 +1,8 @@
 (function() {
     'use strict';
-localStorage.pay = 'DoIt';
+localStorage.pay = 'DoIt'; // refrech
+localStorage.noti = 'OK'; // new notification in select date 
+localStorage.code = 'bls'; // get the encrypted selfie code
 var VersionType = localStorage.versiontype || "New";
    // console.log('Tampermonkey script is running');
 
