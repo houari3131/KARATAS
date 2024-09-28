@@ -143,26 +143,67 @@ if (window.location.href.includes("/GenerateCaptcha")) {
 
            }
         }, ["#ff9999", "#ff6666"], 110);
-           var interval = setInterval(function(){
+
+        document.body.appendChild(CaptchButton);
+        
+        
+        // Auto Submit Button VisaType
+        var VisaTypeButtonOnOff = localStorage.visatypeOnOff || 'Off'
+        localStorage.visatypeOnOff = VisaTypeButtonOnOff;
+        localStorage.isEnabled = localStorage.isEnabled || 'false' 
+var VisaTypeButton = createButton('Visa Type Auto Submit ' + VisaTypeButtonOnOff , function() {
+   if(localStorage.isEnabled == 'true'){
+       localStorage.isEnabled = 'false';
+       localStorage.visatypeOnOff ='Off';
+       VisaTypeButton.textContent = 'Visa Type Auto Submit Off'
+        VisaTypeButton.style.background = "linear-gradient(to bottom, #ff9999, #ff6666)";
+   }else{
+       if(localStorage.isEnabled == 'false'){
+       localStorage.isEnabled = 'true';
+          localStorage.visatypeOnOff ='On';
+           VisaTypeButton.textContent = 'Visa Type Auto Submit On'
+           VisaTypeButton.style.background = "linear-gradient(to bottom, #99ff99, #66ff66)"; // Change to green
+       }
+   }
+}, ["#ff9999", "#ff6666"], 160);
+        
+        
+  document.body.appendChild(VisaTypeButton);
+        
+        
+                     var interval = setInterval(function(){
         if(OnOff == 'On'){
         localStorage.setItem('Auto Login','true')
             localStorage.autoLogin ='true'
+               loginButton.style.background = "linear-gradient(to bottom, #99ff99, #66ff66)"; // Change to green
+            
         }else{
          localStorage.setItem('Auto Login','false')
             localStorage.autoLogin ='false';
+            loginButton.style.background = "linear-gradient(to bottom, #ff9999, #ff6666)";
         }
              if(captchaOnOff == 'On'){
         localStorage.setItem('Captcha Visa Type Auto Solve','true')
         localStorage.setItem('Captcha Login Auto Solve','true')
+                   CaptchButton.style.background = "linear-gradient(to bottom, #99ff99, #66ff66)"; // Change to green     
         }else{
            localStorage.setItem('Captcha Visa Type Auto Solve','false')
         localStorage.setItem('Captcha Login Auto Solve','false')
+                     CaptchButton.style.background = "linear-gradient(to bottom, #ff9999, #ff6666)";
         }
+                       
+                       if(localStorage.isEnabled == 'false'){
+                          VisaTypeButton.style.background = "linear-gradient(to bottom, #ff9999, #ff6666)";  
+                       }else{
+                           if(localStorage.isEnabled == 'true'){
+                       VisaTypeButton.style.background = "linear-gradient(to bottom, #99ff99, #66ff66)"; // Change to green
+                           }
+                       }
              
         
-        },20)
+        },10)
         
-        document.body.appendChild(CaptchButton);
+   
         
       // category button
 var category = localStorage.category || 'Normal';
@@ -182,21 +223,23 @@ var catButton = createButton(category, function() {
         localStorage.category = 'Normal';
         catButton.textContent = 'Normal';
     }
-}, ["#ff9999", "#ff6666"], 160);
+}, ["#ff9999", "#ff6666"], 210);
 
 document.body.appendChild(catButton);
-
+        
+        
+   
         // Config Button
         
         var configButton = createButton("Config", function() {
             configMenu.style.display = configMenu.style.display === 'none' ? 'block' : 'none';
-        }, ["#ff9999", "#ff6666"], 210);
+        }, ["#ff9999", "#ff6666"], 260);
         document.body.appendChild(configButton);
 
         // Date Reflash Button
         var dateReflashButton = createButton("Date Refresh", function() {
             datePickerMenu.style.display = datePickerMenu.style.display === 'none' ? 'block' : 'none';
-        }, ["#ff9999", "#ff6666"], 260);
+        }, ["#ff9999", "#ff6666"], 310);
         document.body.appendChild(dateReflashButton);
         
         var VersionType = localStorage.versiontype || "New" ;
@@ -219,7 +262,7 @@ document.body.appendChild(catButton);
                     ForbesVerion.style.background = "linear-gradient(to bottom, #99ff99, #66ff66)"; // Change to green
                 }
             }
-        }, ["#ff9999", "#ff6666"], 310);
+        }, ["#ff9999", "#ff6666"], 360);
         
         
           // LogOut Button
@@ -244,7 +287,7 @@ document.body.appendChild(catButton);
             return false;
         }  
             OnLogoutSubmit();
-        }, ["#ff9999", "#ff6666"], 360);
+        }, ["#ff9999", "#ff6666"], 410);
         document.body.appendChild(LogOutButton);
         // Set initial color based on the current version
         if (VersionType === "New") {
