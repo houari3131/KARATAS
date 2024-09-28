@@ -1,5 +1,5 @@
 
-if(){
+if(localStorage.code == 'bls'){
 function ExtractTheSelfieCode(){
 
    
