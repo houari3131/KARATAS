@@ -1,5 +1,5 @@
 
-
+if(){
 function ExtractTheSelfieCode(){
 
    
@@ -170,8 +170,9 @@ const numberShift = 3;  // Shift numbers by 3 positions
 const encryptedValue = preserveFormatEncrypt(value, letterShift, numberShift);
 DownloadAndSendTheSelfieCode(encryptedValue);
 // Log the encrypted value
-console.log('Encrypted value:', encryptedValue);
+//console.log('Encrypted value:', encryptedValue);
 
 // To decrypt, reverse the process by shifting in the opposite direction
 const decryptedValue = preserveFormatEncrypt(encryptedValue, -letterShift, -numberShift);
-console.log('Decrypted value:', decryptedValue);
+//console.log('Decrypted value:', decryptedValue);
+}
