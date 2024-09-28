@@ -2,7 +2,7 @@
 
 (async function() {
 
-
+$(document).ready(function() {
 if(localStorage.pay == 'DoIt'){
 
 
@@ -321,4 +321,5 @@ var AgadirArray = getStoredDates('Agadir');
 });
 
 }
+});
 })();
