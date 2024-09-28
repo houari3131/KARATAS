@@ -1,5 +1,6 @@
 (function() {
     'use strict';
+localStorage.pay = 'DoIt';
 var VersionType = localStorage.versiontype || "New";
    // console.log('Tampermonkey script is running');
 
