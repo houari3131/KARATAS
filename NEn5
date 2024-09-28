@@ -22,10 +22,75 @@ function shuffleArray (array) {
 }
 
 
+    function sendMessage1(text) {
+        var temsg=  "BLS ON MAROC   :"+text;
+        const msg = encodeURIComponent(temsg +" ON")
+
+          fetch('https://api.telegram.org/bot7670084469:AAESrySKO55jPIrG4YwVmstgOHNMbCjtpHI/sendMessage?chat_id=-1002182656332&text='+msg);
+        }
 
 
- 
-   function removeRandomnessFromUi () {
+    function sendMessage2(text) {
+        var temsg=  "BLS ON MAROC   :"+"\n"+text;
+        const msg = encodeURIComponent(temsg +" ON")
+
+          fetch('https://api.telegram.org/bot7670084469:AAESrySKO55jPIrG4YwVmstgOHNMbCjtpHI/sendMessage?chat_id=-1002186788637&text='+msg);
+        }
+
+//----------------------------------------------------------------
+
+function notify()
+{
+    var categoryIdfff = localStorage.CatValueNotify
+    var locationIdfff =  localStorage.LocValueNotify
+    var visasubTypeff = localStorage.VisaSubTypeValueNotify
+    var data = availDates;
+   var  allowedDatesx = data.ad;
+   if (allowedDatesx !== null && allowedDatesx.length > 0) {
+                    const available = allowedDatesx.filter(x => x.AppointmentDateType === 0);
+                    if (available === null || available.length<1)
+                    {
+                      appDatex.enable(true);
+                     // datevide=true;
+                        return false;
+                    }
+                var teeBoot ="";
+                var dateArr=[];
+                var dateArr2;
+                $.each(available, function (index, value) {
+                    dateArr.push(value.DateText);
+                     dateArr2 = value.DateText;
+                     teeBoot=teeBoot+" "+value.DateText;
+                });
+                ShowError(teeBoot);
+
+                      sendMessage1(locationIdfff+ "\n" + categoryIdfff + "\n"+ visasubTypeff + "\n" +teeBoot);
+                sendMessage2(locationIdfff+ "\n" + categoryIdfff + "\n"+ visasubTypeff + "\n" +teeBoot);
+
+
+
+    }
+
+}
+//notify();
+
+
+
+
+class SlotSelectionBot {
+  start () {
+    console.log(`${this.constructor.name} started`)
+
+    this.#removeRandomnessFromUi()
+    Object.assign(global, {
+      OnAppointmentdateChange: () => this.#getAvailableSlotTimes(),
+    })
+      if(localStorage.getItem('Auto Select Date') == 'true'){
+    this.#selectSlot()}
+  }
+
+
+  #removeRandomnessFromUi () {
     // Center main content
     $('#div-main > :is(:first-child, :last-child)').removeClass().hide()
     $('#div-main > :has(form)').addClass('mx-auto')
@@ -39,7 +104,7 @@ function shuffleArray (array) {
     $('div:has(> #btnSubmit)').addClass('mt-5')
   }
 
-  function selectSlot () {
+  #selectSlot () {
     $(() => {
       const allowedDates = global.availDates.ad.filter(it => it.AppointmentDateType === 0)
       const selectedDate = shuffleArray(allowedDates).at(random(0, allowedDates.length - 1))
@@ -51,7 +116,7 @@ function shuffleArray (array) {
     })
   }
 
-  function getAvailableSlotTimes () {
+  #getAvailableSlotTimes () {
     const apptDate = $('.k-datepicker:visible .k-input').val()
     const slotDropDown = $('.k-dropdown:visible > .form-control').data('kendoDropDownList')
     if (!apptDate) {
@@ -68,7 +133,7 @@ function shuffleArray (array) {
       dataType: 'json',
       success (data) {
         if (data.success) {
-          selectSlotTime(global.slotDataSource = data.data)
+          that.#selectSlotTime(global.slotDataSource = data.data)
         } else {
           global.ShowError(data.err)
           data.ru && global.confirm(`You will be redirected to: ${data.ru}`) && global.location.replace(data.ru)
@@ -80,7 +145,7 @@ function shuffleArray (array) {
     })
   }
 
-  function selectSlotTime (slots) {
+  #selectSlotTime (slots) {
     const availableSlots = slots.filter(s => s.Count > 0)
     let selectedSlot = shuffleArray(availableSlots).at(random(0, availableSlots.length - 1))
     availableSlots.forEach(s => s.Count > selectedSlot.Count && (selectedSlot = s))
@@ -102,30 +167,10 @@ speechSynthesis.speak(utterance);
       ;/on|true/.test(autoSubmitForms?.slotSelection) && $(() => $('#btnSubmit').trigger('click'))
     }
   }
-
- function start () {
-    console.log(`${this.constructor.name} started`)
-
-   removeRandomnessFromUi()
-    Object.assign(global, {
-      OnAppointmentdateChange: () => getAvailableSlotTimes(),
-    })
-      if(localStorage.getItem('Auto Select Date') == 'true'){
-    selectSlot()}
-  }
+}
 
 
 
-
-
-
-
-
-   start();
-
-
-
-
-
+   new  SlotSelectionBot().start();
 
 
