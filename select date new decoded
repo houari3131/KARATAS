@@ -1,4 +1,4 @@
-
+$(document).ready(function() {
       const autoSubmitForms = {
   login: localStorage.autoLogin,
   loginCaptcha: localStorage.captchaautosolve,
@@ -235,7 +235,7 @@ notify();
 
 
 
-
+});
 
 
 
