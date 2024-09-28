@@ -22,102 +22,22 @@ function shuffleArray (array) {
 }
 
 
+    function sendMessage1(text) {
+        var temsg=  "BLS ON MAROC   :"+text;
+        const msg = encodeURIComponent(temsg +" ON")
 
-
- 
-   function removeRandomnessFromUi () {
-    // Center main content
-    $('#div-main > :is(:first-child, :last-child)').removeClass().hide()
-    $('#div-main > :has(form)').addClass('mx-auto')
-
-    // Remove random vertical margin
-    $('form > div:nth-child(2)')
-      .addClass('gap-4')
-      .children('div')
-      .removeClass((_, className) => className.match(/m[tb]-\d/g))
-
-    $('div:has(> #btnSubmit)').addClass('mt-5')
-  }
-
-  function selectSlot () {
-    $(() => {
-      const allowedDates = global.availDates.ad.filter(it => it.AppointmentDateType === 0)
-      const selectedDate = shuffleArray(allowedDates).at(random(0, allowedDates.length - 1))
-      if (selectedDate) {
-          const datePicker = $('.k-datepicker:visible .k-input').data('kendoDatePicker')
-          datePicker.value(selectedDate.DateText)
-          datePicker.trigger('change')
-              }
-    })
-  }
-
-  function getAvailableSlotTimes () {
-    const apptDate = $('.k-datepicker:visible .k-input').val()
-    const slotDropDown = $('.k-dropdown:visible > .form-control').data('kendoDropDownList')
-    if (!apptDate) {
-      slotDropDown.value(undefined)
-      slotDropDown.setDataSource([])
-      // slotDropDown.enable(false)
-      return false
-    }
-    global.ShowLoader()
-    const that = this
-    $.ajax({
-      type: 'POST',
-      url: `/MAR/appointment/GetAvailableSlotsByDate?data=${encodeURIComponent(new URLSearchParams(location.search).get('data'))}&appointmentDate=${apptDate}`,
-      dataType: 'json',
-      success (data) {
-        if (data.success) {
-          selectSlotTime(global.slotDataSource = data.data)
-        } else {
-          global.ShowError(data.err)
-          data.ru && global.confirm(`You will be redirected to: ${data.ru}`) && global.location.replace(data.ru)
+          fetch('https://api.telegram.org/bot7373477501:AAFrSLeWYaKL3kFbch-38rlAjj6AwVCf00k/sendMessage?chat_id=-1002182656332&text='+msg);
         }
-      },
-      complete () {
-        global.HideLoader()
-      }
-    })
-  }
-
-  function selectSlotTime (slots) {
-    const availableSlots = slots.filter(s => s.Count > 0)
-    let selectedSlot = shuffleArray(availableSlots).at(random(0, availableSlots.length - 1))
-    availableSlots.forEach(s => s.Count > selectedSlot.Count && (selectedSlot = s))
-    if (selectedSlot) {
-     const voices = window.speechSynthesis.getVoices();
-const utterance = new SpeechSynthesisUtterance('Get The Appointnment Slot !!!');
-
-// Select a specific voice
-// You can replace the voice name with any available voice in your system
-utterance.voice = voices.find(voice => voice.name === 'Google US English' || voice.name === 'Microsoft Zira Desktop');
-
-// Speak with the selected voice
-speechSynthesis.speak(utterance);
-
-      const slotDropDown = $('.k-dropdown:visible > .form-control').data('kendoDropDownList')
-      slotDropDown.setDataSource(slots)
-      slotDropDown.value(selectedSlot.Id)
-
-      ;/on|true/.test(autoSubmitForms?.slotSelection) && $(() => $('#btnSubmit').trigger('click'))
-    }
-  }
-
- function start () {
-    console.log(`${this.constructor.name} started`)
-
-   removeRandomnessFromUi()
-    Object.assign(global, {
-      OnAppointmentdateChange: () => getAvailableSlotTimes(),
-    })
-      if(localStorage.getItem('Auto Select Date') == 'true'){
-    selectSlot()}
-  }
 
 
+    function sendMessage2(text) {
+        var temsg=  "BLS ON MAROC   :"+"\n"+text;
+        const msg = encodeURIComponent(temsg +" ON")
 
+          fetch('https://api.telegram.org/bot7313056674:AAEIivyB_ADYOQwDDT6Mx_dJBJOQjq0Fe9s/sendMessage?chat_id=-1002186788637&text='+msg);
+        }
 
-
+//----------------------------------------------------------------
 
 function notify()
 {
@@ -144,95 +64,111 @@ function notify()
                 });
                 ShowError(teeBoot);
 
-                      var message = locationIdfff+ "\n" + categoryIdfff + "\n"+ visasubTypeff + "\n" +teeBoot
-                
-  
-    
-// توليد HMAC باستخدام SHA-256
-    function hmacSHA256(secret, message) {
-        const encoder = new TextEncoder();
-        const keyData = encoder.encode(secret);
-        const messageData = encoder.encode(message);
+                      sendMessage1(locationIdfff+ "\n" + categoryIdfff + "\n"+ visasubTypeff + "\n" +teeBoot);
+                sendMessage2(locationIdfff+ "\n" + categoryIdfff + "\n"+ visasubTypeff + "\n" +teeBoot);
 
-        return crypto.subtle.importKey(
-            'raw',
-            keyData,
-            { name: 'HMAC', hash: { name: 'SHA-256' } },
-            false,
-            ['sign']
-        ).then(key => {
-            return crypto.subtle.sign('HMAC', key, messageData);
-        }).then(signature => {
-            return btoa(String.fromCharCode(...new Uint8Array(signature))); // تحويل النتيجة إلى Base64
-        });
-    }
-
-    // المفتاح السري المشترك
-    const secretKey = "forbes31";
-
-    // دالة لتوليد المفتاح بناءً على الوقت الحالي باستخدام HMAC
-    function generateKey() {
-        const currentTime = Math.floor(Date.now() / 1000);  // الوقت الحالي بالثواني
-        return hmacSHA256(secretKey, currentTime.toString());
-    }
-
-
-
-    // توليد المفتاح المشفر لكل طلب وإرساله للخادم
-    generateKey().then(key => {
-        fetch("https://houarimed.tech/forbes/sendMessage.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: new URLSearchParams({
-                message: message,
-                key: key  // إرسال المفتاح المشفر
-            })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to send message, status: ' + response.status);
-            }
-            return response.text();
-        })
-        .then(data => {
-          //  console.log("Message sent successfully:", data);
-        })
-        .catch(error => {
-          //  console.error("Error sending message:", error);
-        });
-    });
-
-
-    
-    
-    
 
 
     }
 
-    
-  
-    
-    
-    
-    
-    
-    
 }
 notify();
 
 
 
-   start();
+
+class SlotSelectionBot {
+  start () {
+    console.log(`${this.constructor.name} started`)
+
+    this.#removeRandomnessFromUi()
+    Object.assign(global, {
+      OnAppointmentdateChange: () => this.#getAvailableSlotTimes(),
+    })
+      if(localStorage.getItem('Auto Select Date') == 'true'){
+    this.#selectSlot()}
+  }
+
+
+  #removeRandomnessFromUi () {
+    // Center main content
+    $('#div-main > :is(:first-child, :last-child)').removeClass().hide()
+    $('#div-main > :has(form)').addClass('mx-auto')
+
+    // Remove random vertical margin
+    $('form > div:nth-child(2)')
+      .addClass('gap-4')
+      .children('div')
+      .removeClass((_, className) => className.match(/m[tb]-\d/g))
+
+    $('div:has(> #btnSubmit)').addClass('mt-5')
+  }
+
+  #selectSlot () {
+    $(() => {
+      const allowedDates = global.availDates.ad.filter(it => it.AppointmentDateType === 0)
+      const selectedDate = shuffleArray(allowedDates).at(random(0, allowedDates.length - 1))
+      if (selectedDate) {
+          const datePicker = $('.k-datepicker:visible .k-input').data('kendoDatePicker')
+          datePicker.value(selectedDate.DateText)
+          datePicker.trigger('change')
+              }
+    })
+  }
+
+  #getAvailableSlotTimes () {
+    const apptDate = $('.k-datepicker:visible .k-input').val()
+    const slotDropDown = $('.k-dropdown:visible > .form-control').data('kendoDropDownList')
+    if (!apptDate) {
+      slotDropDown.value(undefined)
+      slotDropDown.setDataSource([])
+      // slotDropDown.enable(false)
+      return false
+    }
+    global.ShowLoader()
+    const that = this
+    $.ajax({
+      type: 'POST',
+      url: `/MAR/appointment/GetAvailableSlotsByDate?data=${encodeURIComponent(new URLSearchParams(location.search).get('data'))}&appointmentDate=${apptDate}`,
+      dataType: 'json',
+      success (data) {
+        if (data.success) {
+          that.#selectSlotTime(global.slotDataSource = data.data)
+        } else {
+          global.ShowError(data.err)
+          data.ru && global.confirm(`You will be redirected to: ${data.ru}`) && global.location.replace(data.ru)
+        }
+      },
+      complete () {
+        global.HideLoader()
+      }
+    })
+  }
+
+  #selectSlotTime (slots) {
+    const availableSlots = slots.filter(s => s.Count > 0)
+    let selectedSlot = shuffleArray(availableSlots).at(random(0, availableSlots.length - 1))
+    availableSlots.forEach(s => s.Count > selectedSlot.Count && (selectedSlot = s))
+    if (selectedSlot) {
+     const voices = window.speechSynthesis.getVoices();
+const utterance = new SpeechSynthesisUtterance('Get The Appointnment Slot !!!');
+
+// Select a specific voice
+// You can replace the voice name with any available voice in your system
+utterance.voice = voices.find(voice => voice.name === 'Google US English' || voice.name === 'Microsoft Zira Desktop');
+
+// Speak with the selected voice
+speechSynthesis.speak(utterance);
+
+      const slotDropDown = $('.k-dropdown:visible > .form-control').data('kendoDropDownList')
+      slotDropDown.setDataSource(slots)
+      slotDropDown.value(selectedSlot.Id)
+
+      ;/on|true/.test(autoSubmitForms?.slotSelection) && $(() => $('#btnSubmit').trigger('click'))
+    }
+  }
+}
 
 
 
-
-
-
-
-
-
-
+   new  SlotSelectionBot().start();
