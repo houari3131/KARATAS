@@ -129,6 +129,9 @@ if (window.location.href.includes("/GenerateCaptcha")) {
        // captchaAutosolve
          var captchaOnOff = localStorage.captchaOnOff || 'Off';
         localStorage.captchaOnOff = captchaOnOff;
+        localStorage.LoginAutoSolveCaptcha = localStorage.LoginAutoSolveCaptcha || 'false';
+        localStorage.captchaautosolve = localStorage.LoginAutoSolveCaptcha || 'false';
+        
   var CaptchButton = createButton("Captcha Auto Solve " + captchaOnOff, function() {
            if(localStorage.captchaOnOff == 'On' ){
                captchaOnOff = 'Off';
@@ -185,10 +188,14 @@ var VisaTypeButton = createButton('Visa Type Auto Submit ' + VisaTypeButtonOnOff
              if(captchaOnOff == 'On'){
         localStorage.setItem('Captcha Visa Type Auto Solve','true')
         localStorage.setItem('Captcha Login Auto Solve','true')
+                 localStorage.LoginAutoSolveCaptcha = 'true'
+                 localStorage.captchaautosolve = 'true'
                    CaptchButton.style.background = "linear-gradient(to bottom, #99ff99, #66ff66)"; // Change to green     
         }else{
            localStorage.setItem('Captcha Visa Type Auto Solve','false')
         localStorage.setItem('Captcha Login Auto Solve','false')
+             localStorage.LoginAutoSolveCaptcha = 'false'
+                 localStorage.captchaautosolve = 'false'
                      CaptchButton.style.background = "linear-gradient(to bottom, #ff9999, #ff6666)";
         }
                        
