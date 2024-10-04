@@ -613,7 +613,7 @@ downloadFile();
                     loader.style.display = 'none'; // Hide loader
             
                     var selfieVerifiedButton = createButton('Selfie Verified', '#28a745', function() {
-                       alert('Selfie has been successfully verified!');
+                      // alert('Selfie has been successfully verified!');
             
             
             
