@@ -332,15 +332,23 @@ downloadFile();
             return selfieCode ;
             }
             
-            
+           
             // ثابت اسم العميل
-            var clientName = "MOHAMED"; // ثابت اسم العميل
+            var clientName ; // ثابت اسم العميل
             var selfieCode = ''; // متغير لحفظ الكود الذي سيتم البحث عنه
             var intervalId; // متغير لتخزين معرف الفاصل الزمني لإيقاف البحث لاحقًا
             var encryptedSelfieCodeValue;
             var generatedLink;
             var ResultCode;
-            
+            if(window.location.href.includes("livenessrequest")){
+
+                clientName = localStorage.UserID
+
+            }else{
+
+                clientName = 'Test '+localStorage.UserID
+
+            }
             
             
             
@@ -423,6 +431,10 @@ downloadFile();
             linkInput.style.marginRight = '10px';
             linkInput.style.padding = '8px';
             
+
+
+//////////////////////////////////////////////// GET LINK BUTTON //////////////////////////////////////////////////////////////////////
+
             var getLinkButton = createButton('get link', '#FF6666', async function() {
             // Generate a random ID
             
