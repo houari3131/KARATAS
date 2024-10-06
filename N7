@@ -2,9 +2,18 @@
 if(localStorage.noti == 'OK'){
 function notify()
 {
-    var categoryIdfff = localStorage.CatValueNotify
-    var locationIdfff =  localStorage.LocValueNotify
-    var visasubTypeff = localStorage.VisaSubTypeValueNotify
+   
+    var categoryIdfff; 
+    var locationIdfff; 
+    var visasubTypeff; 
+        if(localStorage.getItem('isEnabled') == 'true'){ 
+        
+             categoryIdfff = localStorage.category
+     locationIdfff = localStorage.location
+     visasubTypeff = localStorage.visaSubtype
+        
+        }
+        
     var data = availDates;
    var  allowedDatesx = data.ad;
    if (allowedDatesx !== null && allowedDatesx.length > 0) {
