@@ -12,6 +12,11 @@ function notify()
      locationIdfff = localStorage.location
      visasubTypeff = localStorage.visaSubtype
         
+        }else{
+           categoryIdfff = localStorage.CatValueNotify
+     locationIdfff = localStorage.LocValueNotify
+     visasubTypeff = localStorage.VisaSubTypeValueNotify
+        
         }
         
     var data = availDates;
